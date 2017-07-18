@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Photos</title>
+<link rel="icon" href="../smile.gif" type="image/gif" sizes="16x16">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Calligraffitti" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script>
+    var pic = document.getElementsByClassName('all');
+    function main(){
+      $('.all').hide();
+      $('.all').fadeIn(900);
+    }
+    $(document).ready(main);
+  </script>
+
+<style>
+* {box-sizing:border-box}
+body {font-family: Verdana,sans-serif;
+  margin:0;
+  background-color: #ffffcc;
+}
+
+.home {
+  background-color: #333;
+}
+.home a {
+  display:block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-family: "Courier New", "Arial Black", "Serif";
+}
+div h1 {
+  text-align: center;
+  font-family: 'Calligraffitti', cursive;
+}
+
+.mySlides {display:none}
+
+.slideshow-container {
+  max-width: 650px;
+  position: relative;
+  margin: auto;
+
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 10px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.6s ease;
+  border-radius: 0 10px 10px 0;
+}
+
+
+.next {
+  right: 0;
+  border-radius: 10px 0 0 10px;
+}
+
+
+.prev:hover, .next:hover {
+  background-color: rgba(51, 26, 0,0.5);
+}
+
+
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  top:0px;
+  left:40px;
+  width: 100%;
+  
+}
+
+
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+
+.dot {
+  cursor:pointer;
+  height: 13px;
+  width: 13px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+</style>
+</head>
+<body>
+
+<div class="home">
+    <a href="../mainpage/testing.html">HOME</a> 
+</div>
+<div class="all">
+<div>
+    <h1>Those are my daily life photos, please feel free to take a look!!
+    </h1>
+</div>
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+  <div class="numbertext">1 / 5</div>
+  <img src="IMG_2178.jpg" style="width:100%">
+  <div class="text">Taoyuan, Taiwan</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">2 / 5</div>
+  <img src="IMG_3834.jpg" style="width:100%">
+  <div class="text">Okinawa, Japan</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">3 / 5</div>
+  <img src="IMG_5925.jpg" style="width:100%">
+  <div class="text">Penghu, Taiwan</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">4 / 5</div>
+  <img src="IMG_5768.jpg" style="width:100%">
+  <div class="text">Taichung, Taiwan</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">5 / 5</div>
+  <img src="IMG_1461.jpg" style="width:100%">
+  <div class="text">Yilan, Taiwan</div>
+</div>
+
+<a class="prev" onclick="plusSlides(-1)">&#171;</a>
+<a class="next" onclick="plusSlides(1)">&#187;</a>
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span>
+  <span class="dot" onclick="currentSlide(4)"></span> 
+  <span class="dot" onclick="currentSlide(5)"></span> 
+ 
+</div>
+</div>
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+</script>
+
+</body>
+</html> 

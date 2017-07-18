@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My game</title>
+	<link rel="icon" href="../smile.gif" type="image/gif" sizes="16x16">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Calligraffitti" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script>
+    var pic = document.getElementsByClassName('all');
+    function main(){
+      $('.all').hide();
+      $('.all').fadeIn(900);
+    }
+    $(document).ready(main);
+  	</script>
+
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+		min-width: 480px;
+	}
+	body{
+		background-color: #ffffcc;
+		padding: 0;
+		margin: 0;
+
+	}
+	canvas{
+		position: absolute;
+		top:90px;
+		left: 33%;
+		border: 1px solid #d3d3d3;
+    	background-color: #f1f1f1;
+    	
+	}
+	.all{
+		position: relative;
+		height: 600px;		
+	}
+	.home {
+		width: 100%;
+		min-width: 1000px;
+  		background-color: #333;
+	}
+	.home a {
+  		display:block;
+  		color: white;
+  		text-align: center;
+  		padding: 14px 16px;
+  		text-decoration: none;
+  		font-family: "Courier New", "Arial Black", "Serif";
+	}
+	.btnback{
+		position: relative;
+		left: 33%;
+		width: 480px;
+		height: 270px;
+		margin: 40px 0;
+	}
+
+	#btn{
+		position: absolute;
+		top:42%;
+		left: 36%;
+    	cursor: pointer;
+		
+	}
+	button:hover{
+		background-color: #9999ff;
+	}
+	#startcon{
+		position: absolute;
+		top:40%;
+		left: 38%;
+    	cursor: pointer;
+
+	}
+	#back{
+		position: absolute;
+		
+	}
+	button{
+		background-color: #6666ff;
+		min-width: 50px;
+    	border: none;
+    	color: white;
+    	padding: 15px 32px;
+    	text-align: center;
+    	font-size: 16px;
+    	margin: 4px 2px;
+    	cursor: pointer;
+    	border-radius: 12px;
+    	font-family: Courier, "Arial Black", "Serif";
+	}
+	#words{
+		position: relative;
+		height: 260px;
+	}
+	#words h2{
+		position: absolute;
+		left:40%;
+		font-size: 60px;
+		font-family: 'Amatic SC', cursive;
+		
+	}
+	#words p{
+		position: absolute;
+		top:30%;
+		left: 12%;
+		font-size: 35px;
+		font-family: 'Calligraffitti', cursive;
+		text-align: center;
+	}
+	</style>
+</head>
+<body>
+<div class="home">
+        <a href="../mainpage/testing.html">HOME</a> 
+</div>
+<div class="all">
+  <div class="btnback">
+	<div id="back">
+		<img id="pic" src="background.png">
+	</div>
+	<div id="startcon">	
+		<button id="startbtn" onclick="beginning()">Start</button>
+	</div>
+	<div id="btn">
+	
+	</div>
+  </div>
+	<div id="words">
+		<h2>Little Space Game</h2>
+		<p>This is the little game I designed, please hit the Start button to begin the game.<br>
+			Use the keyboard arrow to avoid the red rocks randomly flying in the space,<br>
+			let's start the game and see how far you can go!! Hope you will enjoy it!!<br>
+		</p>
+	</div>
+</div>
+<script>
+var myGamePiece;
+var myBackground;
+var myObstacles = [];
+var myScore;
+var btn ;
+	function beginning(){
+		var startbtn = document.getElementById("startbtn");
+		var pic = document.getElementById("pic")
+		document.getElementById("startcon").removeChild(startbtn);
+		document.getElementById("back").removeChild(pic);
+		startGame();
+	}
+
+	function startGame() {		
+		myGamePiece = new component(30, 30, "smileogj.png", 10,120, "image");
+		myScore = new component("20px", "Consolas", "yellow", 350, 40, "text");
+		myBackground = new component(480,270,"background.png",0,0,"background")
+		myGameArea.start();
+	}
+
+	var myGameArea = {
+		canvas: document.createElement("canvas"),
+		start : function(){
+			this.canvas.width = 480;
+			this.canvas.height = 270;
+			this.context = this.canvas.getContext("2d");
+			document.body.insertBefore(this.canvas,document.body.childNodes[0]);
+			this.frameNo = 0;
+			this.interval = setInterval(updateGameArea, 20);
+			window.addEventListener('keydown',function(e){
+				myGameArea.keys = (myGameArea.keys || []);
+				myGameArea.keys[e.keyCode] = true;
+			})
+			window.addEventListener('keyup',function(e){
+				myGameArea.keys[e.keyCode] = false;
+			})
+		},
+		clear : function(){
+			this.context.clearRect(0,0,this.canvas.width, this.canvas.height);
+		},
+		stop : function(){
+			clearInterval(this.interval);
+		},
+		restart : function(){
+			this.btn = document.createElement("BUTTON");
+			var textnode = document.createTextNode("Restart");
+			this.btn.appendChild(textnode);
+			document.getElementById("btn").appendChild(this.btn);
+			
+		},
+		debtn : function(){
+			document.getElementById("btn").removeChild(this.btn);
+		}
+	}
+
+	function restart(){
+		startGame();
+		myObstacles = [];
+		myGameArea.debtn();
+	}
+
+	function component(width, height, color, x, y, type){
+		this.type = type;
+		if(type == "image" || type == "background"){
+			this.image = new Image();
+			this.image.src = color;
+		}
+		this.width = width;
+		this.height = height;
+		this.speedX = 0;
+		this.speedY = 0;
+		this.x = x;
+		this.y = y;
+		this.update = function(){
+			ctx = myGameArea.context;
+			if(this.type == "text"){
+			ctx.font = this.width + " " + this.height;
+      		ctx.fillStyle = color;
+      		ctx.fillText(this.text, this.x, this.y);
+			}else if(type == "image" || type == "background"){
+				ctx.drawImage(this.image,this.x,this.y,this.width,this.height);
+				if(type == "background"){
+					ctx.drawImage(this.image,this.x + this.width,this.y,this.width,this.height);
+				}
+			}else{
+			ctx.fillStyle = color;
+			ctx.fillRect(this.x, this.y, this.width, this.height);	
+			}
+		}	
+		this.newPos = function(){
+			this.x += this.speedX;
+			this.y += this.speedY;
+			if(this.type == "background"){
+				if(this.x == -(this.width)){
+					this.x = 0 ;
+				}
+			}
+		}	
+		this.crashWith = function(otherobj) {
+        	var myleft = this.x;
+        	var myright = this.x + (this.width);
+        	var mytop = this.y;
+        	var mybottom = this.y + (this.height);
+        	var otherleft = otherobj.x;
+        	var otherright = otherobj.x + (otherobj.width);
+        	var othertop = otherobj.y;
+        	var otherbottom = otherobj.y + (otherobj.height);
+        	var crash = true;
+        	if ((mybottom < othertop) ||
+               (mytop > otherbottom) ||
+               (myright < otherleft) ||
+               (myleft > otherright)) {
+           crash = false;
+        }
+        return crash;
+    }
+}
+
+
+	function updateGameArea(){
+		var x, y1, y2, size1, size2;
+		for(i = 0; i< myObstacles.length; i += 1){
+			if(myGamePiece.crashWith(myObstacles[i])){
+				myGameArea.stop();
+				myGameArea.restart();
+				document.getElementById("btn").addEventListener("click", restart);	
+				return;
+			}
+		}		
+		myGameArea.clear();
+		myBackground.speedX = -1;
+		myBackground.newPos();
+		myBackground.update();
+		myGameArea.frameNo += 1;
+		if(myGameArea.frameNo == 1 || everyinterval(150)){
+			x = myGameArea.canvas.width;
+			y1 = Math.random()*(150);
+			y2 = Math.random()*(135);
+			size1 = Math.random()* 20;
+			size2 = Math.random()* 20;
+			myObstacles.push(new component(10 + size1, 10+size1, "red", x, y1));
+			myObstacles.push(new component(10 + size2, 10+size2, "red", x, 125+y2));
+		}
+		for(i = 0; i < myObstacles.length; i+= 1){
+			if(i % 2 == 0){
+				myObstacles[i].x += Math.random()*(-5);
+				myObstacles[i].y += Math.random()*1;
+			}else{
+				myObstacles[i].x += Math.random()*(-5);
+				myObstacles[i].y += Math.random()*(-1);
+			}
+			myObstacles[i].update();
+		}
+
+		myGamePiece.speedX = 0;
+    	myGamePiece.speedY = 0; 
+		if(myGameArea.keys && myGameArea.keys[37]){myGamePiece.speedX = -1;}
+		if(myGameArea.keys && myGameArea.keys[39]){myGamePiece.speedX = 1;}
+		if(myGameArea.keys && myGameArea.keys[38]){myGamePiece.speedY = -1;}
+		if(myGameArea.keys && myGameArea.keys[40]){myGamePiece.speedY = 1;}
+		myScore.text="SCORE: " + myGameArea.frameNo;
+		myScore.update();
+		myGamePiece.newPos();
+		myGamePiece.update();
+		}
+		function everyinterval(n) {
+    	if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
+    	return false;
+	}
+</script>
+
+</body>
+</html>
