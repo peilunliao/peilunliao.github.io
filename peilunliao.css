@@ -64,8 +64,3 @@ li a:hover {
   text-align: center;
 }
 
-@media only screen and (min-width: 200px) {
-	.container {
-		font-size:2px;
-	}
-}
