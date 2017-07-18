@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+	<title>Add Quotes</title>
+	<link rel="icon" href="../smile.gif" type="image/gif" sizes="16x16">
+	<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Calligraffitti" rel="stylesheet">
+	<link href="quote.css" type="text/css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="quote.js"></script>	
+	<script>
+		var pic = document.getElementsByClassName('all');
+		function main(){
+			$('.all').hide();
+			$('.all').fadeIn(1000);
+		}
+		$(document).ready(main);
+	</script>
+</head>
+<body>
+
+<div class="home">
+		<a href="../mainpage/peilunliao.html">HOME</a>	
+</div>
+<div class="all">
+<div>
+	<p>It's my habit to write down the quotes inspiring me,
+	then I can keep those words in mind and cheer myself up!<br>
+	That's why I made this quotes noting thing for practice!
+	Please type in any words below and give it a try!
+	</p>
+</div>
+<div id="myDIV" class="header">
+  <h2 style="margin:5px">Quotes Inspiring Me</h2>
+  <input type="text" id="myInput" placeholder="Type...">
+  <span onclick="newElement()" class="addBtn">Add</span>
+</div>
+</div>
+<ul id="myUL">
+  
+</ul>
+
+</body>
+</html>
