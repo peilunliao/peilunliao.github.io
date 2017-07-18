@@ -14,6 +14,37 @@
       $('.painter').fadeIn(900);
     }
     $(document).ready(main);
+		
+	$(document).ready(function(){
+		$("#redpic").click(function(){
+			color = "#FF8080";
+		});
+		$("#bluepic").click(function(){
+			color = "#80AAFF";	
+		});
+		$("#greenpic").click(function(){
+			color = "#85e085";	
+		});
+		$("#blackpic").click(function(){
+			color = "black";	
+		});
+		$("#eraserpic").click(function(){
+			color = "white";	
+		});
+	});
+
+	$(document).ready(function(){
+		$("#large").click(function(){
+			width = 40;
+		});
+		$("#middle").click(function(){
+			width = 24;	
+		});
+		$("#small").click(function(){
+			width = 10;	
+		});
+		
+	});
   	</script>
 
 	<style>
@@ -213,36 +244,7 @@
 			y:evt.clientY - rect.top
 		};
 	}
-	$(document).ready(function(){
-		$("#redpic").click(function(){
-			color = "#FF8080";
-		});
-		$("#bluepic").click(function(){
-			color = "#80AAFF";	
-		});
-		$("#greenpic").click(function(){
-			color = "#85e085";	
-		});
-		$("#blackpic").click(function(){
-			color = "black";	
-		});
-		$("#eraserpic").click(function(){
-			color = "white";	
-		});
-	});
-
-	$(document).ready(function(){
-		$("#large").click(function(){
-			width = 40;
-		});
-		$("#middle").click(function(){
-			width = 24;	
-		});
-		$("#small").click(function(){
-			width = 10;	
-		});
-		
-	});
+	
 
 	function draw(canvas, posx, posy){
 		var context = canvas.getContext('2d');
