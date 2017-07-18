@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<title>Timer</title>
+<link rel="icon" href="../smile.gif" type="image/gif" sizes="16x16">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Calligraffitti" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<style>
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+*{
+  padding: 0;
+  margin: 0;
+}
+.home {
+  background-color: #333;
+}
+.home a {
+  display:block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-family: "Courier New", "Arial Black", "Serif";
+}
+.bgimg {
+    background-image: url('IMG_1845.jpg');
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    color: white;
+    font-size: 25px;
+}
+
+.topleft {
+    position: absolute;
+    top: 8%;
+    left: 14%;
+    color:#333;
+    font-family: 'Calligraffitti', cursive;
+    text-align: center;
+}
+
+.bottomleft {
+    position: absolute;
+    top: 40%;
+    left: 3%;
+    color:#333;
+    text-align: center;
+    font-family: 'Calligraffitti', cursive;
+}
+
+.middle {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Amatic SC', cursive; 
+}
+.counter{
+    position: absolute;
+    top: 25%;
+    left: 8%;
+    text-align: center;
+    font-family: 'Amatic SC', cursive;
+    white-space: nowrap;
+}
+</style>
+<body>
+<div class="home">
+        <a href="../mainpage/peilunliao.html">HOME</a> 
+</div>
+<div class="bgimg">
+  <div class="topleft">
+    <p>Countdown Timer</p>
+  </div>
+  <div class="middle">
+    <h1>My birthday remains</h1>
+  </div>
+  <div class="counter">
+    <p id="demo" style="font-size:80px"></p>
+  </div>
+  <div class="bottomleft">
+    <p>This is the countdown timer to my next year's birthday<br>
+    My birthday is on Jul. 9.
+    </p>
+  </div>
+</div>
+<script>
+var countDownDate = new Date("Jul 9, 2018 00:00:00").getTime();
+
+var countdownfunction = setInterval(function() {
+
+    
+    var now = new Date().getTime();
+    
+   
+    var distance = countDownDate - now;
+    
+   
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    
+    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+    
+     
+    if (distance < 0) {
+        clearInterval(countdownfunction);
+        document.getElementById("demo").innerHTML = "!!!Make a wish!!!";
+    }
+}, 1000);
+
+var pic = document.getElementsByClassName('bgimg');
+    function main(){
+      $('.bgimg').hide();
+      $('.bgimg').fadeIn(1000);
+    }
+    $(document).ready(main);
+</script>
+
+</body>
+</html>
