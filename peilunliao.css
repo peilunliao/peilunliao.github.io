@@ -65,5 +65,7 @@ li a:hover {
 }
 
 @media screen and (min-width: 400px) {
-	.container {font.size:2px}
+	.container {
+		font-size:2px;
+	}
 }
