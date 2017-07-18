@@ -64,6 +64,6 @@ li a:hover {
   text-align: center;
 }
 
-@media screen and (min-width: 480px) {
-	p {font.size:10px}
+@media screen and (min-width: 400px) {
+	.container {font.size:2px}
 }
