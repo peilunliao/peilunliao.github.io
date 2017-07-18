@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Painter</title>
+	<link rel="icon" href="../smile.gif" type="image/gif" sizes="16x16">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Calligraffitti" rel="stylesheet">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+
+	<script>
+    var pic = document.getElementsByClassName('painter');
+    function main(){
+      $('.painter').hide();
+      $('.painter').fadeIn(900);
+    }
+    $(document).ready(main);
+  	</script>
+
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			background-color: #ffffcc;
+		}
+		canvas{
+			/*position: absolute;
+			top:6%;
+			left:28%;*/
+			margin: auto;
+			margin-top:50px;
+			display: block;
+			border: 2px solid black;
+			background-color: white;
+			cursor: url('paintcursor.gif'),pointer;
+		}
+
+		.home {
+  			background-color: #333;
+  			width: 100%;
+  			min-width: 800px;
+
+		}
+		.home a {
+  			display:block;
+  			color: white;
+  			text-align: center;
+  			padding: 14px 16px;
+  			text-decoration: none;
+  			font-family: "Courier New", "Arial Black", "Serif";
+		}
+		.painter{
+			margin: auto;
+			position: relative;
+			height:600px;
+			width: 800px;
+			
+		}
+		p{
+			padding-bottom:10px;
+
+		}
+		.colors{
+			position: absolute;
+			top:0;
+			right: 0;
+			text-align: center;
+			font-family: Courier, "Arial Black", "Serif";			
+		}
+		#large:hover, #blackpic:hover, #redpic:hover, #bluepic:hover, #greenpic:hover{
+			position: relative;
+			right:1px;
+			bottom:1px;
+			cursor: pointer;
+		}
+		.size{
+			height: 300px;
+			position: absolute;
+			left:2%;
+			top:0;
+			text-align: center;
+			font-family: Courier, "Arial Black", "Serif";
+		}
+		#middle{
+			position: absolute;
+			left:23%;
+			top:30%;
+		}
+		#middle:hover{
+			position: absolute;
+			left:21%;
+			top: 29.5%;
+			cursor: pointer;
+		}
+		#small{
+			position: absolute;
+			left:33%;
+			top:43%;
+		}
+		#small:hover{
+			position: absolute;
+			left:32%;
+			top: 42.5%;
+			cursor: pointer;
+		}
+		#eraser{
+			position: absolute;
+			left: 2%;
+			top:35%;
+		}
+		#eraser:hover{
+			position: absolute;
+			left: 1.7% ;
+			top: 34.7% ;
+			cursor: pointer;
+		}
+		img{
+			display: block;
+		}
+		button{
+			position: absolute;
+			left:1px;
+			bottom: 35%;
+			background-color: #6666ff;
+    		border: none;
+    		color: white;
+    		padding: 15px 15px;
+    		text-align: center;
+    		font-size: 16px;
+    		margin: 4px 2px;
+    		cursor: pointer;
+    		border-radius: 12px;
+    		font-family: Courier, "Arial Black", "Serif";
+		}
+		button:hover{
+			position: absolute;
+			left:0px;
+			bottom: 35.5%;
+		}
+		#words{
+			margin: auto;
+			margin-top: 30px;
+			font-family: 'Calligraffitti', cursive;
+			font-size: 30px;
+			text-align: center;
+		}
+	</style>
+
+</head>
+<body>
+<div class="home">
+        <a href="../mainpage/peilunliao.html">HOME</a> 
+</div>
+<div class="painter">
+	<div>
+	<canvas id = "canvas" width="600" height="400"></canvas>
+	</div>
+	<div class="colors">
+		<p>Colors<br></p>
+		<img id="blackpic" src="blackcolor.png">
+		<img id="redpic" src="redcolor.png">
+		<img id="bluepic" src="bluecolor.png">
+		<img id="greenpic" src="greencolor.png">
+	</div>
+	<div class="size">
+		<p>Size<br></p>
+		<img id="large" src="large.png">
+		<img id="middle" src="middle.png">
+		<img id="small" src="small.png">
+	</div>
+	<div id="eraser">
+		<img id="eraserpic" src="eraser.png">
+	</div>
+	<button onclick="window.location.reload()">Clear</button>
+	<div id="words">
+	<p>This is the little paint game I created, please give it a try!<br>
+	you can change the size and color of stroke by tapping the images,<br>
+	Let's start and find out what you can create !!
+	</p>
+	</div>
+</div>
+<script>
+	var clickx = new Array();
+	var clicky = new Array();
+	var color = "black";
+	var width = 10;
+	var md = false;
+	var canvas = document.getElementById('canvas');
+	canvas.addEventListener('mousedown', down);
+	canvas.addEventListener('mouseup', toggledraw);
+	canvas.addEventListener('mousemove',
+	function(evt){
+		var mousePos = getMousePos(canvas, evt);
+		var posx = mousePos.x;
+		var posy = mousePos.y;
+		clickx.push(posx);
+		clicky.push(posy);
+		draw(canvas, posx, posy);
+	});
+
+	function down(){
+		md = true;
+	}
+	function toggledraw(){
+		md = false;
+		canvas.style.cursor="url('paintcursor.gif'), pointer";
+	}
+	function getMousePos(canvas, evt){
+		var rect = canvas.getBoundingClientRect();
+		return{
+			x:evt.clientX - rect.left,
+			y:evt.clientY - rect.top
+		};
+	}
+	$(document).ready(function(){
+		$("#redpic").click(function(){
+			color = "#FF8080";
+		});
+		$("#bluepic").click(function(){
+			color = "#80AAFF";	
+		});
+		$("#greenpic").click(function(){
+			color = "#85e085";	
+		});
+		$("#blackpic").click(function(){
+			color = "black";	
+		});
+		$("#eraserpic").click(function(){
+			color = "white";	
+		});
+	});
+
+	$(document).ready(function(){
+		$("#large").click(function(){
+			width = 40;
+		});
+		$("#middle").click(function(){
+			width = 24;	
+		});
+		$("#small").click(function(){
+			width = 10;	
+		});
+		
+	});
+
+	function draw(canvas, posx, posy){
+		var context = canvas.getContext('2d');
+		var i = clickx.length;
+		var j = clicky.length;
+		if(md){
+			canvas.style.cursor="url('paintcursor.gif'), pointer";
+			context.beginPath();
+			context.arc(posx,posy,width/2,0,2*Math.PI);
+			context.fillStyle = color;
+			context.fill();
+			context.beginPath();
+			if( i> 1 && j > 1){
+				context.moveTo(clickx[i-2],clicky[j-2]);
+			}else{
+				context.moveTo(clickx[i-1],clicky[j-1]);
+			}
+			context.lineTo(clickx[i-1],clicky[j-1]);
+			context.closePath();
+			context.lineWidth= width;
+			context.strokeStyle = this.color;
+			context.stroke(); 
+
+			/*context.moveTo(posx - 5 ,posy +5);
+			context.lineTo(posx + 5 ,posy +5);
+			context.lineTo(posx + 5 ,posy -5);
+			context.lineTo(posx - 5 ,posy -5);
+			context.closePath();
+			context.fillStyle = "black";
+			context.fill();*/
+
+			
+		}
+	}
+</script>
+</body>
+</html>
