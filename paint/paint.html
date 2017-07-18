@@ -8,43 +8,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 	<script>
-    var pic = document.getElementsByClassName('painter');
-    function main(){
-      $('.painter').hide();
-      $('.painter').fadeIn(900);
-    }
-    $(document).ready(main);
-		
-	$(document).ready(function(){
-		$("#redpic").click(function(){
-			color = "#FF8080";
-		});
-		$("#bluepic").click(function(){
-			color = "#80AAFF";	
-		});
-		$("#greenpic").click(function(){
-			color = "#85e085";	
-		});
-		$("#blackpic").click(function(){
-			color = "black";	
-		});
-		$("#eraserpic").click(function(){
-			color = "white";	
-		});
-	});
-
-	$(document).ready(function(){
-		$("#large").click(function(){
-			width = 40;
-		});
-		$("#middle").click(function(){
-			width = 24;	
-		});
-		$("#small").click(function(){
-			width = 10;	
-		});
-		
-	});
+    
   	</script>
 
 	<style>
@@ -279,6 +243,45 @@
 			
 		}
 	}
+
+var pic = document.getElementsByClassName('painter');
+    function main(){
+      $('.painter').hide();
+      $('.painter').fadeIn(900);
+    }
+    $(document).ready(main);
+		
+	$(document).ready(function(){
+		$("#redpic").click(function(){
+			color = "#FF8080";
+		});
+		$("#bluepic").click(function(){
+			color = "#80AAFF";	
+		});
+		$("#greenpic").click(function(){
+			color = "#85e085";	
+		});
+		$("#blackpic").click(function(){
+			color = "black";	
+		});
+		$("#eraserpic").click(function(){
+			color = "white";	
+		});
+	});
+
+	$(document).ready(function(){
+		$("#large").click(function(){
+			width = 40;
+		});
+		$("#middle").click(function(){
+			width = 24;	
+		});
+		$("#small").click(function(){
+			width = 10;	
+		});
+		
+	});
+	
 </script>
 </body>
 </html>
