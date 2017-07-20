@@ -5,7 +5,7 @@
 	<link rel="icon" href="../smile.gif" type="image/gif" sizes="16x16">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Calligraffitti" rel="stylesheet">
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
 
 	<script>
     var pic = document.getElementsByClassName('painter');
@@ -288,7 +288,10 @@
 
 	function draw(canvas, posx, posy){
 		var i = clickx.length;
+		var it= touchx.length;
 		var j = clicky.length;
+		var jt =touchy.length;
+		
 		if(md){
 			canvas.style.cursor="url('paintcursor.gif'), pointer";
 			context.beginPath();
@@ -297,11 +300,17 @@
 			context.fill();
 			context.beginPath();
 			if( i> 1 && j > 1){
-				context.moveTo(clickx[i-2],clicky[j-2]);
+				context.moveTo(touchx[i-2],touchy[j-2]);
 			}else{
-				context.moveTo(clickx[i-1],clicky[j-1]);
+				context.moveTo(touchx[i-1],touchy[j-1]);
+			}
+			if( it> 1 && jt > 1){
+				context.moveTo(touchx[it-2],touchy[jt-2]);
+			}else{
+				context.moveTo(touchx[it-1],touchy[jt-1]);
 			}
 			context.lineTo(clickx[i-1],clicky[j-1]);
+			context.lineTo(touchx[it-1],touchy[jt-1]);
 			context.closePath();
 			context.lineWidth= width;
 			context.strokeStyle = this.color;
