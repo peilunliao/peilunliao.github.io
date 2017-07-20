@@ -207,7 +207,7 @@
 	var canvas = document.getElementById('canvas');
 	var context = canvas.getContext('2d');
 	canvas.addEventListener('mousedown', down);
-	//canvas.addEventListener('touchstart', down);	
+	canvas.addEventListener('touchstart', down);	
 	canvas.addEventListener('mouseup', toggledraw);
 	canvas.addEventListener('touchend', toggledraw);
 	canvas.addEventListener('touchmove',
@@ -300,9 +300,9 @@
 			context.fill();
 			context.beginPath();
 			if( i> 1 && j > 1){
-				context.moveTo(touchx[i-2],touchy[j-2]);
+				context.moveTo(clickx[i-2],clicky[j-2]);
 			}else{
-				context.moveTo(touchx[i-1],touchy[j-1]);
+				context.moveTo(clickx[i-1],clicky[j-1]);
 			}
 			if( it> 1 && jt > 1){
 				context.moveTo(touchx[it-2],touchy[jt-2]);
@@ -310,7 +310,7 @@
 				context.moveTo(touchx[it-1],touchy[jt-1]);
 			}
 			context.lineTo(clickx[i-1],clicky[j-1]);
-			//context.lineTo(touchx[it-1],touchy[jt-1]);
+			context.lineTo(touchx[it-1],touchy[jt-1]);
 			context.closePath();
 			context.lineWidth= width;
 			context.strokeStyle = this.color;
