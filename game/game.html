@@ -188,8 +188,8 @@ var btn ;
 			this.frameNo = 0;
 			this.interval = setInterval(updateGameArea, 20);
 			window.addEventListener('touchmove', function (e) {
-               myGameArea.x = e.touches[0].screenX;
-               myGameArea.y = e.touches[0].screenY;
+               			myGameArea.x = e.touches[0].clientX;
+               			myGameArea.y = e.touches[0].clientY;
         	})
 
 			window.addEventListener('keydown',function(e){
@@ -316,8 +316,8 @@ var btn ;
 		}		
 		myGameArea.clear();
 		if (myGameArea.touchX && myGameArea.touchY) {
-        myGamePiece.x = myGameArea.x;
-        myGamePiece.y = myGameArea.y; 
+        		myGamePiece.x = myGameArea.x;
+        		myGamePiece.y = myGameArea.y; 
    		 }
 		myBackground.speedX = -1;
 		myBackground.newPos();
