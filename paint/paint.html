@@ -5,7 +5,7 @@
 	<link rel="icon" href="../smile.gif" type="image/gif" sizes="16x16">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Calligraffitti" rel="stylesheet">
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
 
 	<script>
     var pic = document.getElementsByClassName('painter');
@@ -35,20 +35,29 @@
 			background-color: white;
 			cursor: url('paintcursor.gif'),pointer;
 		}
-
-		.home {
-  			background-color: #333;
-  			width: 100%;
-  			min-width: 800px;
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: #333;
 
 		}
-		.home a {
-  			display:block;
-  			color: white;
-  			text-align: center;
-  			padding: 14px 16px;
-  			text-decoration: none;
-  			font-family: "Courier New", "Arial Black", "Serif";
+		li {
+			float: left;
+		}
+		li a {
+			display:block;
+			color: white;
+			text-align: center;
+			padding: 18px 24px;
+			text-decoration: none;
+			font-family: "Courier New", "Arial Black", "Serif";
+
+		}
+
+		li a:hover {
+			background-color: #111;
 		}
 		.painter{
 			margin: auto;
@@ -149,8 +158,15 @@
 
 </head>
 <body>
-<div class="home">
-        <a href="../peilunliao.html">HOME</a> 
+<div class=navBar>
+	<ul>
+		<li><a href="../mainpage/peilunliao.html">HOME</a></li>
+		<li><a href="../quote/quote.html">QUOTES NOTING</a></li>
+		<li><a href="../timer/timer.html">COUNTDOWN TIMER</a></li>
+		<li><a href="../slideshow/slideshow.html">PHOTO SLIDESHOW</a></li>
+		<li><a href="../game/game.html">LITTLE SPACE GAME</a></li>
+		<li><a href="paint.html">PAINTER</a></li>
+	</ul>
 </div>
 <div class="painter">
 	<div>
@@ -172,10 +188,10 @@
 	<div id="eraser">
 		<img id="eraserpic" src="eraser.png">
 	</div>
-	<button onclick="window.location.reload()">Clear</button>
+	<button id="button">Clear</button>
 	<div id="words">
-	<p>This is the little paint game I created, please give it a try!<br>
-	you can change the size and color of stroke by tapping the images,<br>
+	<p>This is the little paint game I created. Please give it a try!<br>
+	You can change the size and color of stroke by tapping the images.<br>
 	Let's start and find out what you can create !!
 	</p>
 	</div>
@@ -187,8 +203,20 @@
 	var width = 10;
 	var md = false;
 	var canvas = document.getElementById('canvas');
+	var context = canvas.getContext('2d');
 	canvas.addEventListener('mousedown', down);
+	canvas.addEventListener('touchstart', down);	
 	canvas.addEventListener('mouseup', toggledraw);
+	canvas.addEventListener('touchend', toggledraw);
+	canvas.addEventListener('touchmove',
+	function(evt){
+		var mousePos = getMousePos(canvas, evt);
+		var posx = mousePos.x;
+		var posy = mousePos.y;
+		clickx.push(posx);
+		clicky.push(posy);
+		draw(canvas, posx, posy);
+	});
 	canvas.addEventListener('mousemove',
 	function(evt){
 		var mousePos = getMousePos(canvas, evt);
@@ -198,7 +226,7 @@
 		clicky.push(posy);
 		draw(canvas, posx, posy);
 	});
-
+	
 	function down(){
 		md = true;
 	}
@@ -244,8 +272,11 @@
 		
 	});
 
+	document.getElementById('button').addEventListener('click', function() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+      }, false);
+
 	function draw(canvas, posx, posy){
-		var context = canvas.getContext('2d');
 		var i = clickx.length;
 		var j = clicky.length;
 		if(md){
