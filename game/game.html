@@ -343,7 +343,7 @@ var btn ;
 			
 			myObstacles.push(new component(15 + size1, 15+size1, "red", x, y1));
 			myObstacles.push(new component(10 + size2, 10+size2, "red", x, 135+y2));
-			if(myGameArea.frameNo > 600 ){
+			if(myGameArea.frameNo > 400 ){
 				size3 = Math.random()*30;
 				y3 = Math.random()*(50);
 				size4 = Math.random()*30;
@@ -351,6 +351,13 @@ var btn ;
 				myObstacles.push(new component(15 + size3, 15+size3, "red", x, y3));
 				myObstacles.push(new component(10 + size4, 10+size4, "red", x, 160+y4));
 			}
+			if(myGameArea.frameNo > 800 ){
+				size5 = Math.random()*2;
+				y5 = Math.random()*(20);
+				size6 = Math.random()*2;
+				y6 = Math.random()*(20);
+				myObstacles.push(new component(15 + size5, 15+size5, "red", x, y5));
+				myObstacles.push(new component(10 + size6, 10+size6, "red", x, 200+y6));
 		}
 
 		for(i = 0; i < myObstacles.length; i+= 1){
