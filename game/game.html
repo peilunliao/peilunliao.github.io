@@ -310,7 +310,7 @@ var btn ;
 
 
 	function updateGameArea(){
-		var x, y, y1, y2, y3, y4, size1, size2, size3, size4;
+		var x, y, y1, y2, y3, y4, size1, size2, size3, size4,rect;
 		
 		
 		for(i = 0; i< myObstacles.length; i += 1){
@@ -322,9 +322,10 @@ var btn ;
 			}
 		}		
 		myGameArea.clear();
+		rect = myGameArea.canvas.getBoundingClientRect();
 		if (touchx && touchy) {
-        		myGamePiece.x = touchx;
-        		myGamePiece.y = touchy; 
+        		myGamePiece.x = touchx - rect.left;
+        		myGamePiece.y = touchy - rect.top; 
    		 }
 		myBackground.speedX = -1;
 		myBackground.newPos();
