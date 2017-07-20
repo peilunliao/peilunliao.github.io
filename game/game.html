@@ -226,11 +226,12 @@ var btn ;
 	}
 
 	function restart(){
+		var rect = myGameArea.canvas.getBoundingClientRect();
 		startGame();
 		myObstacles = [];
 		myGameArea.debtn();
-		touchx = 10;
-		touchy = 120;
+		touchx = 10 + rect.x;
+		touchy = 120 + rect.y;
 	}
 
 	function component(width, height, color, x, y, type){
