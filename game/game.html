@@ -159,7 +159,7 @@
 </div>
 <script>
 var myGamePiece;
-var touchx ;
+var touchx  ;
 var touchy ;	
 var myBackground;
 var myObstacles = [];
@@ -191,13 +191,11 @@ var btn ;
 			this.interval = setInterval(updateGameArea, 20);
 			window.addEventListener('touchmove', function (e) {
 				e.preventDefault();
-				var touchPos = gettouchpos(canvas, e){
-					touchx = touchPos.x;
-					touchy = touchPos.y;
-					
-				}
+				touchx = e.touches[0].clientX;
+				touchy = e.touches[0].clientY;	
+				
                			
-        	})
+        	},false)
 
 			window.addEventListener('keydown',function(e){
 				myGameArea.keys = (myGameArea.keys || []);
@@ -222,14 +220,8 @@ var btn ;
 		},
 		debtn : function(){
 			document.getElementById("btn").removeChild(this.btn);
-		},
-		gettouchpos: function(canvas, e){
-		var rect = canvas.getBoundingClientRect();
-		return{
-			x:e.touches[0].clientX - rect.left,
-			y:e.touches[0].clientY - rect.top
-			};
-	  	}
+		}
+		
 	}
 
 	function restart(){
@@ -374,7 +366,7 @@ var btn ;
 		  }
 	   
 		myGamePiece.speedX = 0;
-    	myGamePiece.speedY = 0;
+    	        myGamePiece.speedY = 0;
 		if(myGameArea.keys && myGameArea.keys[37]){myGamePiece.speedX = -1;}
 		if(myGameArea.keys && myGameArea.keys[39]){myGamePiece.speedX = 1;}
 		if(myGameArea.keys && myGameArea.keys[38]){myGamePiece.speedY = -1;}
