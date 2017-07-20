@@ -191,8 +191,9 @@ var btn ;
 			this.interval = setInterval(updateGameArea, 20);
 			window.addEventListener('touchmove', function (e) {
 				e.preventDefault();
-				touchx = e.touches[0].clientX;
-				touchy = e.touches[0].clientY;	
+				var rect = canvas.getBoundingClientRect();
+				touchx = e.touches[0].clientX - rect.left;
+				touchy = e.touches[0].clientY - rect.top;	
 				
                			
         	},false)
