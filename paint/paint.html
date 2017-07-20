@@ -199,6 +199,8 @@
 <script>
 	var clickx = new Array();
 	var clicky = new Array();
+	var touchx = new Array();
+	var touchy = new Array();
 	var color = "black";
 	var width = 10;
 	var md = false;
@@ -210,13 +212,14 @@
 	canvas.addEventListener('touchend', toggledraw);
 	canvas.addEventListener('touchmove',
 	function(evt){
-		var mousePos = getMousePos(canvas, evt);
-		var posx = mousePos.x;
-		var posy = mousePos.y;
-		clickx.push(posx);
-		clicky.push(posy);
-		draw(canvas, posx, posy);
+		var touchPos = getTouchPos(canvas, evt);
+		var postx = touchPos.x;
+		var posty = touchPos.y;
+		touchx.push(postx);
+		touchy.push(posty);
+		draw(canvas, postx, posty);
 	});
+	
 	canvas.addEventListener('mousemove',
 	function(evt){
 		var mousePos = getMousePos(canvas, evt);
@@ -233,6 +236,13 @@
 	function toggledraw(){
 		md = false;
 		canvas.style.cursor="url('paintcursor.gif'), pointer";
+	}
+	function getTouchPos(canvas, evt){
+		var rect = canvas.getBoundingClientRect();
+		return{
+			x: evt.touches[0].clientX - rect.left,
+			y: evt.touches[0].clientY - rect.top
+		};
 	}
 	function getMousePos(canvas, evt){
 		var rect = canvas.getBoundingClientRect();
