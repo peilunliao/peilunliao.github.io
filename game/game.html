@@ -328,6 +328,19 @@ var btn ;
 		if (touchx && touchy) {
         		myGamePiece.x = touchx - rect.left;
         		myGamePiece.y = touchy - rect.top; 
+			if(myGamePiece.x < 0 || myGamePiece.x == 0){
+        			myGamePiece.x = 0;
+        			myGamePiece.y = touchy - rect.top; 
+        		}else if(myGamePiece.x > 450 || myGamePiece.x == 450){
+        			myGamePiece.x = 450;
+        			myGamePiece.y = touchy - rect.top; 
+        		}else if(myGamePiece.y < 0 || myGamePiece.y == 0){
+        			myGamePiece.x = touchx - rect.left;
+        			myGamePiece.y = 0;
+        		}else if(myGamePiece.y >240 || myGamePiece.y == 240){
+        			myGamePiece.x = touchx - rect.left;
+        			myGamePiece.y = 240;
+        		}
    		 }
 		myBackground.speedX = -1;
 		myBackground.newPos();
