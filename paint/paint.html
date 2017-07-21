@@ -253,13 +253,13 @@
 	  evt.preventDefault();
 	  var touches = evt.changedTouches;
 	  var rect = canvas.getBoundingClientRect();
-		context.beginPath();
-		context.arc(touches[i].pageX - rect.left, touches[i].pageY - rect.top, width/2 , 0, 2 * Math.PI, false);
-		context.fillStyle = color;
-    		context.fill();
 	    for (var i = 0; i < touches.length; i++) {
 	    var idx = ongoingTouchIndexById(touches[i].identifier);
 	    if (idx >= 0) {
+	        context.beginPath();
+	 	context.arc(touches[i].pageX - rect.left, touches[i].pageY - rect.top, width/2 , 0, 2 * Math.PI, false);
+		context.fillStyle = color;
+    		context.fill();    
 	      context.beginPath();      
 	      context.moveTo(ongoingTouches[idx].pageX - rect.left, ongoingTouches[idx].pageY - rect.top);
 	      context.lineTo(touches[i].pageX - rect.left, touches[i].pageY - rect.top);
