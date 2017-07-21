@@ -352,23 +352,11 @@ var btn ;
         		}else if(myGamePiece.y < 0 || myGamePiece.y == 0){
         			myGamePiece.x = touchx - rect.left;
         			myGamePiece.y = 0;
-        			if(myGamePiece.x < 0 || myGamePiece.x == 0){
-        				myGamePiece.x = 0;
-        				myGamePiece.y = 0;
-        			}else if(myGamePiece.x >450 || myGamePiece.x == 450){
-        				myGamePiece.x = 450;
-        				myGamePiece.y = 0;
-        			}
+        			
         		}else if(myGamePiece.y >240 || myGamePiece.y == 240){
         			myGamePiece.x = touchx - rect.left;
         			myGamePiece.y = 240;
-        			if(myGamePiece.x < 0 || myGamePiece.x == 0){
-        				myGamePiece.x = 0;
-        				myGamePiece.y = 240;
-        			}else if(myGamePiece.x >450 || myGamePiece.y == 450){
-        				myGamePiece.x = 450;
-        				myGamePiece.y = 240;
-        			}
+        			
         		}
    		 }
 		myBackground.speedX = -1;
