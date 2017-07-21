@@ -232,6 +232,7 @@
 			y:evt.clientY - rect.top
 		};
 	}
+	
 	canvas.addEventListener("touchstart", handleStart, false);
   	canvas.addEventListener("touchend", handleEnd, false);
   	canvas.addEventListener("touchcancel", handleCancel, false);
@@ -245,6 +246,7 @@
     		context.arc(touches[i].pageX, touches[i].pageY, width/2 , 0, 2 * Math.PI, false);  // a circle at the start
     		context.fillStyle = color;
     		context.fill();
+	      }
 	}
 	function handleMove(evt) {
 	  evt.preventDefault();
