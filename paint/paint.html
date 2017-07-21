@@ -207,7 +207,7 @@
 	var canvas = document.getElementById('canvas');
 	var context = canvas.getContext('2d');
 	canvas.addEventListener('mousedown', down);
-	canvas.addEventListener('touchstart', down);	
+	canvas.addEventListener('touchstart', false);	
 	canvas.addEventListener('mouseup', toggledraw);
 	canvas.addEventListener('touchend', toggledraw);
 	canvas.addEventListener('touchmove',
