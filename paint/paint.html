@@ -283,7 +283,6 @@
 	      context.beginPath();
 	      context.moveTo(ongoingTouches[idx].pageX - rect.left , ongoingTouches[idx].pageY - rect.top);
 	      context.lineTo(touches[i].pageX - rect.left, touches[i].pageY - rect.top);
-	      context.fillRect(touches[i].pageX - width - rect.left, touches[i].pageY - width - rect.top, 8, 8);  // and a square at the end
 	      ongoingTouches.splice(idx, 1);  // remove it; we're done
 	    } 
 	  }
