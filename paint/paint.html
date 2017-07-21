@@ -253,7 +253,11 @@
 	  evt.preventDefault();
 	  var touches = evt.changedTouches;
 	  var rect = canvas.getBoundingClientRect();
-	  for (var i = 0; i < touches.length; i++) {
+		context.beginPath();
+		context.arc(touches[i].pageX - rect.left, touches[i].pageY - rect.top, width/2 , 0, 2 * Math.PI, false);
+		context.fillStyle = color;
+    		context.fill();
+	    for (var i = 0; i < touches.length; i++) {
 	    var idx = ongoingTouchIndexById(touches[i].identifier);
 	    if (idx >= 0) {
 	      context.beginPath();      
@@ -279,7 +283,7 @@
 	      context.beginPath();
 	      context.moveTo(ongoingTouches[idx].pageX - rect.left , ongoingTouches[idx].pageY - rect.top);
 	      context.lineTo(touches[i].pageX - rect.left, touches[i].pageY - rect.top);
-	      context.fillRect(touches[i].pageX - 4 - rect.left, touches[i].pageY - 4 - rect.top, 8, 8);  // and a square at the end
+	      context.fillRect(touches[i].pageX - width - rect.left, touches[i].pageY - width - rect.top, 8, 8);  // and a square at the end
 	      ongoingTouches.splice(idx, 1);  // remove it; we're done
 	    } 
 	  }
