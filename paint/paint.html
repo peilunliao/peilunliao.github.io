@@ -199,27 +199,15 @@
 <script>
 	var clickx = new Array();
 	var clicky = new Array();
-	var touchx = new Array();
-	var touchy = new Array();
+	var ongoingTouches = [];
 	var color = "black";
 	var width = 10;
 	var md = false;
 	var canvas = document.getElementById('canvas');
 	var context = canvas.getContext('2d');
-	canvas.addEventListener('mousedown', down);
-	canvas.addEventListener('touchstart', down);	
+	canvas.addEventListener('mousedown', down);	
 	canvas.addEventListener('mouseup', toggledraw);
-	canvas.addEventListener('touchend', toggledraw);
 	canvas.addEventListener('touchmove',
-	function(evt){
-		var touchPos = getTouchPos(canvas, evt);
-		var postx = touchPos.x;
-		var posty = touchPos.y;
-		touchx.push(postx);
-		touchy.push(posty);
-		draw(canvas, postx, posty);
-	}, false);
-	
 	canvas.addEventListener('mousemove',
 	function(evt){
 		var mousePos = getMousePos(canvas, evt);
@@ -229,7 +217,7 @@
 		clicky.push(posy);
 		draw(canvas, posx, posy);
 	});
-	
+				
 	function down(){
 		md = true;
 	}
@@ -237,13 +225,7 @@
 		md = false;
 		canvas.style.cursor="url('paintcursor.gif'), pointer";
 	}
-	function getTouchPos(canvas, evt){
-		var rect = canvas.getBoundingClientRect();
-		return{
-			x: evt.touches[0].clientX - rect.left,
-			y: evt.touches[0].clientY - rect.top
-		};
-	}
+	
 	function getMousePos(canvas, evt){
 		var rect = canvas.getBoundingClientRect();
 		return{
@@ -251,6 +233,75 @@
 			y:evt.clientY - rect.top
 		};
 	}
+	canvas.addEventListener("touchstart", handleStart, false);
+  	canvas.addEventListener("touchend", handleEnd, false);
+  	canvas.addEventListener("touchcancel", handleCancel, false);
+  	canvas.addEventListener("touchmove", handleMove, false);
+	function handleStart(evt){
+		evt.preventDefault();
+		var touches = evt.changedTouches;
+		for (var i = 0; i < touches.length; i++) {
+    		ongoingTouches.push(copyTouch(touches[i]));
+    		context.beginPath();
+    		context.arc(touches[i].pageX, touches[i].pageY, width/2 , 0, 2 * Math.PI, false);  // a circle at the start
+    		context.fillStyle = color;
+    		context.fill();
+	}
+	function handleMove(evt) {
+	  evt.preventDefault();
+	  var touches = evt.changedTouches;
+	  for (var i = 0; i < touches.length; i++) {
+	    var idx = ongoingTouchIndexById(touches[i].identifier);
+	    if (idx >= 0) {
+	      context.beginPath();      
+	      context.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
+	      context.lineTo(touches[i].pageX, touches[i].pageY);
+	      context.lineWidth = width;
+	      context.strokeStyle = color;
+	      context.stroke();
+	      ongoingTouches.splice(idx, 1, copyTouch(touches[i]));  // swap in the new touch record
+	    } 
+	  }
+	}
+	function handleEnd(evt) {
+	  evt.preventDefault();
+	  var touches = evt.changedTouches;
+	  for (var i = 0; i < touches.length; i++) {
+	    var idx = ongoingTouchIndexById(touches[i].identifier);
+
+	    if (idx >= 0) {
+	      context.lineWidth = width;
+	      context.fillStyle = color;
+	      context.beginPath();
+	      context.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
+	      context.lineTo(touches[i].pageX, touches[i].pageY);
+	      context.fillRect(touches[i].pageX - 4, touches[i].pageY - 4, 8, 8);  // and a square at the end
+	      ongoingTouches.splice(idx, 1);  // remove it; we're done
+	    } 
+	  }
+	}
+	function handleCancel(evt) {
+	  evt.preventDefault();
+	  var touches = evt.changedTouches;
+	  for (var i = 0; i < touches.length; i++) {
+	    var idx = ongoingTouchIndexById(touches[i].identifier);
+	    ongoingTouches.splice(idx, 1);  // remove it; we're done
+	  }
+	}
+	function copyTouch(touch) {
+  	return { identifier: touch.identifier, pageX: touch.pageX, pageY: touch.pageY };
+	}
+	function ongoingTouchIndexById(idToFind) {
+	  for (var i = 0; i < ongoingTouches.length; i++) {
+	    var id = ongoingTouches[i].identifier;
+
+	    if (id == idToFind) {
+	      return i;
+	    }
+	  }
+	  return -1;    // not found
+	}	
+		
 	$(document).ready(function(){
 		$("#redpic").click(function(){
 			color = "#FF8080";
@@ -288,9 +339,8 @@
 
 	function draw(canvas, posx, posy){
 		var i = clickx.length;
-		var it= touchx.length;
 		var j = clicky.length;
-		var jt =touchy.length;
+		
 		
 		if(md){
 			canvas.style.cursor="url('paintcursor.gif'), pointer";
@@ -304,13 +354,9 @@
 			}else{
 				context.moveTo(clickx[i-1],clicky[j-1]);
 			}
-			if( it> 1 && jt > 1){
-				context.moveTo(touchx[it-2],touchy[jt-2]);
-			}else{
-				context.moveTo(touchx[it-1],touchy[jt-1]);
-			}
+			
 			context.lineTo(clickx[i-1],clicky[j-1]);
-			context.lineTo(touchx[it-1],touchy[jt-1]);
+			
 		
 			context.closePath();
 			context.lineWidth= width;
