@@ -23,18 +23,41 @@ body {font-family: Verdana,sans-serif;
   background-color: #ffffcc;
 }
 
-.home {
-  background-color: #333;
+@media only screen and (max-width: 990px){
+    .disappear{display: none;}
 }
-.home a {
+@media only screen and (min-width: 990px) {
+    /* For tablets: */
+    .navBar ul li {float: left;}
+    .navBar ul{overflow: hidden;}
+    div p {font-size: 35px;}
+    
+}
+
+.navBar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+
+}
+
+.navBar ul li a {
   display:block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 18px 24px;
+  font-size: 15px;
   text-decoration: none;
   font-family: "Courier New", "Arial Black", "Serif";
+
 }
-div h1 {
+
+.navBar ul li a:hover {
+  background-color: #111;
+}
+div p {
   text-align: center;
   font-family: 'Calligraffitti', cursive;
 }
@@ -130,19 +153,28 @@ div h1 {
 
 
 @media only screen and (max-width: 300px) {
-  .prev, .next,.text {font-size: 11px}
+  .prev, .next,.text, {font-size: 11px}
 }
 </style>
 </head>
 <body>
 
-<div class="home">
-    <a href="../peilunliao.html">HOME</a> 
+<div class="navBar">
+  <ul>
+    <li><a href="../mainpage/peilunliao.html">HOME</a></li>
+    <div class="disappear">
+    <li><a href="../quote/quote.html">QUOTES NOTING</a></li>
+    <li><a href="../timer/timer.html">COUNTDOWN TIMER</a></li>
+    <li><a href="slideshow.html">PHOTO SLIDESHOW</a></li>
+    <li><a href="../game/game.html">LITTLE SPACE GAME</a></li>
+    <li><a href="../paint/paint.html">PAINTER</a></li>
+    </div>
+  </ul>
 </div>
 <div class="all">
 <div>
-    <h1>Those are my daily life photos, please feel free to take a look!!
-    </h1>
+    <p>Those are my daily life photos. Please feel free to take a look!!
+    </p>
 </div>
 <div class="slideshow-container">
 
