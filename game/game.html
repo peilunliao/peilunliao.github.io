@@ -60,7 +60,9 @@
 
     	
 	}
-	
+	@media only screen and (min-width: 500px){
+		.alert{ display: none; } 
+	}
 	@media only screen and (max-width: 930px){
     .disappear{display: none;}
 		}
@@ -177,6 +179,32 @@
 		text-align: center;
 		margin-top: 20px;
 	}
+	.alert {
+		margin-top: 10px;
+		padding: 20px;
+		background-color: #f44336;
+		color: white;
+		font-family: Courier, "Arial Black", "Serif";
+		position: absolute;
+		top:22%;
+		z-index: 10;
+		min-width: 500px;
+		}
+
+	.closebtn {
+		margin-left: 15px;
+		color: white;
+		font-weight: bold;
+		float: right;
+		font-size: 22px;
+		line-height: 20px;
+		cursor: pointer;
+		transition: 0.3s; 
+		}
+
+	.closebtn:hover {
+		    color: black;
+		}
 	</style>
 </head>
 <body>
@@ -192,7 +220,11 @@
     </div>
   </ul>
 </div>
-
+<div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  <strong>NOTICE!</strong><br> 
+  please turn your device's orientation to fit the game area. 
+</div>
 <div class="all">
 
   <div class="btnback" class="col-12">
