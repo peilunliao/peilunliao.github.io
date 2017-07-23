@@ -20,7 +20,7 @@ body {
     .navBar ul li {float: left;}
     .navBar ul{overflow: hidden;}
     div p{font-size: 25px;}
-    div h2{font-size: 40px;}
+    div h3{font-size: 40px;}
     #myUL li{font-size: 25px;}
     input{font-size: 16px;}
     
@@ -158,7 +158,7 @@ input {
 .addBtn:hover {
   background-color: #5c85d6;
 }
-div h2 {
+div h3 {
   font-family: 'Indie Flower', cursive;
   padding-bottom: 20px;
   
