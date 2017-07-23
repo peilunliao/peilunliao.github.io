@@ -20,77 +20,134 @@
 	*{
 		margin: 0;
 		padding: 0;
+		box-sizing: border-box;
 	}
+	/*.all::after {
+    content: "";
+    clear: both;
+    display: table;
+	}*/
+	[class*="col-"] {
+	    float: left;
+	    padding: 15px;
+	    
+	}
+	.col-1 {width: 8.33%;}
+	.col-2 {width: 16.66%;}
+	.col-3 {width: 25%;}
+	.col-4 {width: 33.33%;}
+	.col-5 {width: 41.66%;}
+	.col-6 {width: 50%;}
+	.col-7 {width: 58.33%;}
+	.col-8 {width: 66.66%;}
+	.col-9 {width: 75%;}
+	.col-10 {width: 83.33%;}
+	.col-11 {width: 91.66%;}
+	.col-12 {width: 100%;}
 	body{
 		background-color: #ffffcc;
 		padding: 0;
 		margin: 0;
-
 	}
 	canvas{
-		position: absolute;
-		top:90px;
-		left: 33%;
+		position: relative;
+		margin-top:20px;
+		display: block;
+    	margin-left: auto;
+    	margin-right: auto;
 		border: 1px solid #d3d3d3;
     	background-color: #f1f1f1;
+
     	
 	}
-	.all{
-		position: relative;
-		height: 600px;		
+	
+	@media only screen and (max-width: 930px){
+    .disappear{display: none;}
+		}
+	@media only screen and (min-width: 930px) {
+    /* For tablets: */
+    .navBar ul li {float: left;}
+    .navBar ul{overflow: hidden;}
+    #words h1 {font-size: 60px;}
+    #words h2 {font-size: 30px;}
+    
 	}
-	ul {
+	.navBar ul {
 	  list-style-type: none;
 	  margin: 0;
 	  padding: 0;
 	  overflow: hidden;
 	  background-color: #333;
+	  min-width: 500px;
 
 	}
-	li {
-	  float: left;
-	}
-	li a {
+	.navBar ul li a {
 	  display:block;
 	  color: white;
 	  text-align: center;
 	  padding: 18px 24px;
+	  font-size:15px;
 	  text-decoration: none;
 	  font-family: "Courier New", "Arial Black", "Serif";
 
 	}
 
-	li a:hover {
+	.navBar ul li a:hover {
 	  background-color: #111;
 	}
-	.btnback{
-		position: relative;
-		left: 33%;
-		width: 480px;
-		height: 270px;
-		margin: 40px 0;
+	img{
+		margin-top:20px;
+		display: block;
+    	margin-left: auto;
+    	margin-right: auto;
 	}
 
 	#btn{
 		position: absolute;
-		top:42%;
-		left: 36%;
-    	cursor: pointer;
+		top:25%;
+		left:auto;
 		
 	}
 	button:hover{
 		background-color: #9999ff;
 	}
 	#startcon{
-		position: absolute;
-		top:40%;
-		left: 38%;
-    	cursor: pointer;
+		position:relative;
+		/*top:10.5%;
+		left:33.4%;*/
+		display: block;
+    	margin-left: auto;
+    	margin-right: auto;
+		width: 480px;
+		height: 270px;
+		background-image: url("background.png");
+		margin-top:20px;
+
 
 	}
-	#back{
-		position: absolute;
-		
+	#startbtn{
+		position: relative;
+		top:44%;
+		left: 38%;
+
+	}
+	#btn{
+		position:relative;
+		/*top:10.5%;
+		left:33.4%;*/
+		display: block;
+    	margin-left: auto;
+    	margin-right: auto;
+		width: 480px;
+		height: 270px;
+		margin-top:-273px;
+		z-index: -1;
+	}
+	#restartbtn{
+		position: relative;
+		top:44%;
+		left: 37%;
+
 	}
 	button{
 		background-color: #6666ff;
@@ -100,29 +157,23 @@
     	padding: 15px 32px;
     	text-align: center;
     	font-size: 16px;
-    	margin: 4px 2px;
     	cursor: pointer;
     	border-radius: 12px;
     	font-family: Courier, "Arial Black", "Serif";
 	}
 	#words{
-		position: relative;
-		height: 260px;
+		min-width: 480px;
+	}
+	#words h1{
+		margin:auto;
+		font-family: 'Amatic SC', cursive;
+		text-align: center;
 	}
 	#words h2{
-		position: absolute;
-		left:40%;
-		font-size: 60px;
-		font-family: 'Amatic SC', cursive;
-		
-	}
-	#words p{
-		position: absolute;
-		top:30%;
-		left: 12%;
-		font-size: 35px;
+		margin:auto;
 		font-family: 'Calligraffitti', cursive;
 		text-align: center;
+		margin-top: 20px;
 	}
 	</style>
 </head>
@@ -130,46 +181,54 @@
 <div class="navBar">
   <ul>
     <li><a href="../mainpage/peilunliao.html">HOME</a></li>
+    <div class="disappear">
     <li><a href="../quote/quote.html">QUOTES NOTING</a></li>
     <li><a href="../timer/timer.html">COUNTDOWN TIMER</a></li>
     <li><a href="../slideshow/slideshow.html">PHOTO SLIDESHOW</a></li>
     <li><a href="game.html">LITTLE SPACE GAME</a></li>
     <li><a href="../paint/paint.html">PAINTER</a></li>
+    </div>
   </ul>
 </div>
+
 <div class="all">
-  <div class="btnback">
-	<div id="back">
+
+  <div class="btnback" class="col-12">
+    
+	<!--<div id="back" >
 		<img id="pic" src="background.png">
-	</div>
+	</div>-->
+	
 	<div id="startcon">	
 		<button id="startbtn" onclick="beginning()">Start</button>
 	</div>
-	<div id="btn">
+	<div id="btn" >
 	
 	</div>
   </div>
-	<div id="words">
-		<h2>Little Space Game</h2>
-		<p>This is the little game I designed.Please hit the Start button to begin the game.<br>
-			Use the keyboard arrow to avoid the red rocks randomly flying in the space.<br>
+	<div id="words" class="col-12">
+		<h1>Little Space Game</h1>
+		<h2>This is the little game I designed.Please hit the Start button to begin the game.<br>
+			Your mission is to avoid the red rocks randomly flying in the space.<br>
 			Let's start the game and see how far you can go!! Hope you will enjoy it!!<br>
-		</p>
+			Use your keyboard arrow (computer) or finger(mobile and tablet) to move the smiley face.
+		</h2>
 	</div>
 </div>
 <script>
 var myGamePiece;
-var touchx  ;
-var touchy ;	
+var touchx;
+var touchy;
 var myBackground;
 var myObstacles = [];
 var myScore;
 var btn ;
 	function beginning(){
-		var startbtn = document.getElementById("startbtn");
-		var pic = document.getElementById("pic")
-		document.getElementById("startcon").removeChild(startbtn);
-		document.getElementById("back").removeChild(pic);
+		//var startbtn = document.getElementById("startbtn");
+		//var pic = document.getElementById("pic")
+		//document.getElementById("startcon").removeChild(startbtn);
+		//document.getElementById("back").removeChild(pic);
+		document.getElementById("startcon").style.display = "none";
 		startGame();
 	}
 
@@ -186,7 +245,7 @@ var btn ;
 			this.canvas.width = 480;
 			this.canvas.height = 270;
 			this.context = this.canvas.getContext("2d");
-			document.body.insertBefore(this.canvas,document.body.childNodes[0]);
+			document.body.insertBefore(this.canvas,document.body.childNodes[3]);
 			this.frameNo = 0;
 			this.interval = setInterval(updateGameArea, 20);
 			window.addEventListener('touchmove', function (e) {
@@ -201,6 +260,9 @@ var btn ;
 			window.addEventListener('keydown',function(e){
 				myGameArea.keys = (myGameArea.keys || []);
 				myGameArea.keys[e.keyCode] = true;
+				if([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+		        e.preventDefault();
+		    	}
 			})
 			window.addEventListener('keyup',function(e){
 				myGameArea.keys[e.keyCode] = false;
@@ -216,13 +278,13 @@ var btn ;
 			this.btn = document.createElement("BUTTON");
 			var textnode = document.createTextNode("Restart");
 			this.btn.appendChild(textnode);
+			this.btn.id= "restartbtn";
 			document.getElementById("btn").appendChild(this.btn);
 			
 		},
 		debtn : function(){
 			document.getElementById("btn").removeChild(this.btn);
 		}
-		
 	}
 
 	function restart(){
@@ -267,9 +329,23 @@ var btn ;
 				if(this.x < 0 || this.x == 0){
 					this.x = 0;
 					this.y += this.speedY;
+					if(this.y < 0 || this.y == 0){
+						this.x = 0;
+						this.y = 0;
+					}else if(this.y > 240 || this.y == 240){
+						this.x = 0;
+						this.y = 240;
+					}
 				}else if(this.x > 450 || this.x == 450){
 					this.x = 450;
-					this.y += this.speedY;					
+					this.y += this.speedY;	
+					if(this.y < 0 || this.y == 0){
+						this.x = 450;
+						this.y = 0;
+					}else if(this.y > 240 || this.y == 240){
+						this.x = 450;
+						this.y = 240;
+					}				
 				}else if(this.y < 0 || this.y == 0){
 					this.x += this.speedX;
 					this.y = 0;
@@ -319,7 +395,8 @@ var btn ;
 			if(myGamePiece.crashWith(myObstacles[i])){
 				myGameArea.stop();
 				myGameArea.restart();
-				document.getElementById("btn").addEventListener("click", restart);	
+				document.getElementById("btn").style.zIndex = "10";
+				document.getElementById("restartbtn").addEventListener("click", restart);	
 				return;
 			}
 		}		
@@ -328,7 +405,7 @@ var btn ;
 		if (touchx && touchy) {
         		myGamePiece.x = touchx - rect.left;
         		myGamePiece.y = touchy - rect.top; 
-				if(myGamePiece.x < 0 || myGamePiece.x == 0){
+        		if(myGamePiece.x < 0 || myGamePiece.x == 0){
         			myGamePiece.x = 0;
         			myGamePiece.y = touchy - rect.top;
         			if(myGamePiece.y < 0 || myGamePiece.y == 0){
@@ -358,7 +435,8 @@ var btn ;
         			myGamePiece.y = 240;
         			
         		}
-   		 }
+        	}
+        
 		myBackground.speedX = -1;
 		myBackground.newPos();
 		myBackground.update();
@@ -408,7 +486,8 @@ var btn ;
 		  }
 	   
 		myGamePiece.speedX = 0;
-    	        myGamePiece.speedY = 0;
+    	myGamePiece.speedY = 0;
+    	
 		if(myGameArea.keys && myGameArea.keys[37]){myGamePiece.speedX = -1;}
 		if(myGameArea.keys && myGameArea.keys[39]){myGamePiece.speedX = 1;}
 		if(myGameArea.keys && myGameArea.keys[38]){myGamePiece.speedY = -1;}
