@@ -20,7 +20,21 @@
 		*{
 			margin: 0;
 			padding: 0;
+			box-sizing: border-box;
 		}
+		@media only screen and (max-width: 930px) {
+	      .disappear{display: none;} 
+		} 
+		@media only screen and (min-width: 930px){
+			.navBar ul li {float: left;}
+		}
+		@media only screen and (orientation: landscape)  {
+	    /* For tablets: */
+	    
+	    #words {font-size: 30px;}
+	    .alert{ display: none; }   
+		}
+		
 		body{
 			background-color: #ffffcc;
 		}
@@ -29,28 +43,28 @@
 			top:6%;
 			left:28%;*/
 			margin: auto;
-			margin-top:50px;
+			margin-top: 10px;
 			display: block;
 			border: 2px solid black;
 			background-color: white;
 			cursor: url('paintcursor.gif'),pointer;
 		}
-		ul {
+		.navBar ul {
 			list-style-type: none;
 			margin: 0;
 			padding: 0;
 			overflow: hidden;
 			background-color: #333;
+			min-width: 500px;
 
 		}
-		li {
-			float: left;
-		}
-		li a {
+		
+		.navBar ul li a {
 			display:block;
 			color: white;
 			text-align: center;
 			padding: 18px 24px;
+			font-size: 15px;
 			text-decoration: none;
 			font-family: "Courier New", "Arial Black", "Serif";
 
@@ -60,14 +74,16 @@
 			background-color: #111;
 		}
 		.painter{
-			margin: auto;
 			position: relative;
-			height:600px;
-			width: 800px;
+			width:600px;
+			height:270px; 
+			margin: auto;
+			margin-top: 50px;
 			
 		}
-		p{
+		.size p, .colors p{
 			padding-bottom:10px;
+			font-size: 12px;
 
 		}
 		.colors{
@@ -83,8 +99,20 @@
 			bottom:1px;
 			cursor: pointer;
 		}
+		#blackpic, #redpic,#bluepic,#greenpic{
+			height: 50px;
+			width: 50px;
+		}
+		#eraserpic{
+			height: 50px;
+			width: 40px;
+		}
+		#large{
+			height: 40px;
+			width: 40px;
+		}
 		.size{
-			height: 300px;
+			height: 150px;
 			position: absolute;
 			left:2%;
 			top:0;
@@ -93,35 +121,35 @@
 		}
 		#middle{
 			position: absolute;
-			left:23%;
-			top:30%;
+			left:15%;
+			top:50%;
 		}
 		#middle:hover{
 			position: absolute;
-			left:21%;
-			top: 29.5%;
+			left:14%;
+			top: 49%;
 			cursor: pointer;
 		}
 		#small{
 			position: absolute;
-			left:33%;
-			top:43%;
+			left:30%;
+			top:75%;
 		}
 		#small:hover{
 			position: absolute;
-			left:32%;
-			top: 42.5%;
+			left:29%;
+			top: 74%;
 			cursor: pointer;
 		}
 		#eraser{
 			position: absolute;
-			left: 2%;
-			top:35%;
+			left:2%;
+			top:60%;
 		}
 		#eraser:hover{
 			position: absolute;
 			left: 1.7% ;
-			top: 34.7% ;
+			top: 59.5% ;
 			cursor: pointer;
 		}
 		img{
@@ -129,30 +157,54 @@
 		}
 		button{
 			position: absolute;
-			left:1px;
-			bottom: 35%;
+			left:8px;
+			bottom:0;
 			background-color: #6666ff;
     		border: none;
     		color: white;
-    		padding: 15px 15px;
+    		padding: 10px 10px;
     		text-align: center;
-    		font-size: 16px;
-    		margin: 4px 2px;
+    		font-size: 12px;
+    		margin: 2px 1px;
     		cursor: pointer;
     		border-radius: 12px;
     		font-family: Courier, "Arial Black", "Serif";
 		}
 		button:hover{
 			position: absolute;
-			left:0px;
-			bottom: 35.5%;
+			left:7px;
+			bottom: 1px;
 		}
 		#words{
 			margin: auto;
 			margin-top: 30px;
 			font-family: 'Calligraffitti', cursive;
-			font-size: 30px;
 			text-align: center;
+			width: 100%;
+			min-width: 500px;
+		}
+		.alert {
+			margin-top: 10px;
+		    padding: 20px;
+		    background-color: #f44336;
+		    color: white;
+		    font-family: Courier, "Arial Black", "Serif";
+
+		}
+
+		.closebtn {
+		    margin-left: 15px;
+		    color: white;
+		    font-weight: bold;
+		    float: right;
+		    font-size: 22px;
+		    line-height: 20px;
+		    cursor: pointer;
+		    transition: 0.3s; 
+		}
+
+		.closebtn:hover {
+		    color: black;
 		}
 	</style>
 
@@ -161,16 +213,22 @@
 <div class=navBar>
 	<ul>
 		<li><a href="../mainpage/peilunliao.html">HOME</a></li>
+		<div class="disappear">
 		<li><a href="../quote/quote.html">QUOTES NOTING</a></li>
 		<li><a href="../timer/timer.html">COUNTDOWN TIMER</a></li>
 		<li><a href="../slideshow/slideshow.html">PHOTO SLIDESHOW</a></li>
 		<li><a href="../game/game.html">LITTLE SPACE GAME</a></li>
 		<li><a href="paint.html">PAINTER</a></li>
+		</div>
 	</ul>
+</div>
+<div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  <strong>NOTICE!</strong> If you're using mobile.Please turn your device's orientation. 
 </div>
 <div class="painter">
 	<div>
-	<canvas id = "canvas" width="600" height="400"></canvas>
+	<canvas id = "canvas" width="450" height="250"></canvas>
 	</div>
 	<div class="colors">
 		<p>Colors<br></p>
@@ -189,23 +247,24 @@
 		<img id="eraserpic" src="eraser.png">
 	</div>
 	<button id="button">Clear</button>
+	</div>
 	<div id="words">
 	<p>This is the little paint game I created. Please give it a try!<br>
 	You can change the size and color of stroke by tapping the images.<br>
 	Let's start and find out what you can create !!
 	</p>
 	</div>
-</div>
+
 <script>
 	var clickx = new Array();
 	var clicky = new Array();
 	var ongoingTouches = [];
 	var color = "black";
-	var width = 10;
+	var width = 6;
 	var md = false;
 	var canvas = document.getElementById('canvas');
 	var context = canvas.getContext('2d');
-	canvas.addEventListener('mousedown', down);	
+	canvas.addEventListener('mousedown', down);
 	canvas.addEventListener('mouseup', toggledraw);
 	canvas.addEventListener('mousemove',
 	function(evt){
@@ -216,7 +275,7 @@
 		clicky.push(posy);
 		draw(canvas, posx, posy);
 	});
-				
+	
 	function down(){
 		md = true;
 	}
@@ -232,7 +291,6 @@
 			y:evt.clientY - rect.top
 		};
 	}
-	
 	canvas.addEventListener("touchstart", handleStart, false);
   	canvas.addEventListener("touchend", handleEnd, false);
   	canvas.addEventListener("touchcancel", handleCancel, false);
@@ -276,7 +334,6 @@
 	  var rect = canvas.getBoundingClientRect();
 	  for (var i = 0; i < touches.length; i++) {
 	    var idx = ongoingTouchIndexById(touches[i].identifier);
-
 	    if (idx >= 0) {
 	      context.lineWidth = width;
 	      context.fillStyle = color;
@@ -301,14 +358,12 @@
 	function ongoingTouchIndexById(idToFind) {
 	  for (var i = 0; i < ongoingTouches.length; i++) {
 	    var id = ongoingTouches[i].identifier;
-
 	    if (id == idToFind) {
 	      return i;
 	    }
 	  }
 	  return -1;    // not found
 	}	
-		
 	$(document).ready(function(){
 		$("#redpic").click(function(){
 			color = "#FF8080";
@@ -329,13 +384,13 @@
 
 	$(document).ready(function(){
 		$("#large").click(function(){
-			width = 40;
+			width = 30;
 		});
 		$("#middle").click(function(){
-			width = 24;	
+			width = 10;	
 		});
 		$("#small").click(function(){
-			width = 10;	
+			width = 6;	
 		});
 		
 	});
@@ -347,8 +402,6 @@
 	function draw(canvas, posx, posy){
 		var i = clickx.length;
 		var j = clicky.length;
-		
-		
 		if(md){
 			canvas.style.cursor="url('paintcursor.gif'), pointer";
 			context.beginPath();
@@ -361,27 +414,16 @@
 			}else{
 				context.moveTo(clickx[i-1],clicky[j-1]);
 			}
-			
 			context.lineTo(clickx[i-1],clicky[j-1]);
-			
-		
 			context.closePath();
 			context.lineWidth= width;
 			context.strokeStyle = this.color;
 			context.stroke(); 
-			
-
-			/*context.moveTo(posx - 5 ,posy +5);
-			context.lineTo(posx + 5 ,posy +5);
-			context.lineTo(posx + 5 ,posy -5);
-			context.lineTo(posx - 5 ,posy -5);
-			context.closePath();
-			context.fillStyle = "black";
-			context.fill();*/
 
 			
 		}
 	}
+	
 </script>
 </body>
 </html>
