@@ -11,6 +11,10 @@ body {
 @media only screen and (max-width: 990px){
     .disappear{display: none;}
 }
+@media only screen and (min-width: 600px){
+    div p{font-size: 20px;}
+    div h3{font-size: 30px;}
+}
 @media only screen and (min-width: 990px) {
     /* For tablets: */
     .navBar ul li {float: left;}
