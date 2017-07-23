@@ -29,11 +29,8 @@
 			.navBar ul li {float: left;}
 			#words {font-size: 25px;}
 		}
-		@media only screen and (orientation: landscape)  {
-	    /* For tablets: */
-	    
-	    
-	    .alert{ display: none; }   
+		@media only screen and (min-width: 600px){
+		.alert{ display: none; } 
 		}
 		
 		body{
@@ -185,27 +182,15 @@
 			min-width: 600px;
 		}
 		.alert {
-			margin-top: 10px;
-		    padding: 20px;
+		    padding: 40px;
 		    background-color: #f44336;
 		    color: white;
 		    font-family: Courier, "Arial Black", "Serif";
+		    top:30%;
+		    text-align: center;
+		    z-index: 10;
 		}
 
-		.closebtn {
-		    margin-left: 15px;
-		    color: white;
-		    font-weight: bold;
-		    float: right;
-		    font-size: 22px;
-		    line-height: 20px;
-		    cursor: pointer;
-		    transition: 0.3s; 
-		}
-
-		.closebtn:hover {
-		    color: black;
-		}
 	</style>
 
 </head>
@@ -223,8 +208,7 @@
 	</ul>
 </div>
 <div class="alert">
-  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-  <strong>NOTICE!</strong> For mobile user<br>
+  <strong>NOTICE!</strong><br>
 	Please turn your device's orientation to fit the canvas. 
 </div>
 <div class="painter">
