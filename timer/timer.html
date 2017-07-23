@@ -16,20 +16,47 @@ body, html {
 *{
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
-.home {
+@media only screen and (max-width: 990px){
+    .disappear{display: none;}
+    .bgimg{background-image: url('IMG_1712.jpg');}
+    .bottomleft{font-size: 18px}
+    .container{width:100%;}
+}
+@media only screen and (min-width: 990px) {
+    /* For tablets: */
+    .navBar ul li {float: left;}
+    .navBar ul{overflow: hidden;}
+    .bgimg{background-image: url('IMG_1845.jpg');}
+    .container{width: 41.66%;}
+    
+}
+.navBar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
   background-color: #333;
+
 }
-.home a {
+
+.navBar ul li a {
   display:block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 18px 24px;
+  font-size: 15px;
   text-decoration: none;
   font-family: "Courier New", "Arial Black", "Serif";
+
+}
+
+.navBar ul li a:hover {
+  background-color: #111;
 }
 .bgimg {
-    background-image: url('IMG_1845.jpg');
+    overflow: auto;
     height: 100%;
     background-position: center;
     background-size: cover;
@@ -37,47 +64,66 @@ body, html {
     color: white;
     font-size: 25px;
 }
-
+.container{
+  
+  height: 400px;
+}
 .topleft {
-    position: absolute;
-    top: 8%;
-    left: 14%;
+    position: relative;
+    top:15%;
+    margin-left: auto;
+    margin-right: auto;
     color:#333;
     font-family: 'Calligraffitti', cursive;
     text-align: center;
 }
 
 .bottomleft {
-    position: absolute;
-    top: 40%;
-    left: 3%;
+    position: relative;
+    top:20%;
+    margin-left: auto;
+    margin-right: auto;
     color:#333;
     text-align: center;
     font-family: 'Calligraffitti', cursive;
 }
 
 .middle {
-    position: absolute;
-    top: 15%;
-    left: 10%;
+    position: relative;
+    top:15%;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
     font-size: 25px;
     font-family: 'Amatic SC', cursive; 
 }
 .counter{
-    position: absolute;
-    top: 25%;
-    left: 8%;
+    position: relative;
+    top:15%;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
     font-family: 'Amatic SC', cursive;
-    white-space: nowrap;
+}
+#demo{
+  font-size:70px;
 }
 </style>
 <body>
-<div class="home">
-        <a href="../peilunliao.html">HOME</a> 
+<div class=navBar>
+  <ul>
+    <li><a href="../mainpage/peilunliao.html">HOME</a></li>
+    <div class="disappear">
+    <li><a href="../quote/quote.html">QUOTES NOTING</a></li>
+    <li><a href="timer.html">COUNTDOWN TIMER</a></li>
+    <li><a href="../slideshow/slideshow.html">PHOTO SLIDESHOW</a></li>
+    <li><a href="../game/game.html">LITTLE SPACE GAME</a></li>
+    <li><a href="../paint/paint.html">PAINTER</a></li>
+    </div>
+  </ul>
 </div>
 <div class="bgimg">
+ <div class="container">
   <div class="topleft">
     <p>Countdown Timer</p>
   </div>
@@ -85,12 +131,13 @@ body, html {
     <h1>My birthday remains</h1>
   </div>
   <div class="counter">
-    <p id="demo" style="font-size:80px"></p>
+    <p id="demo"></p>
   </div>
   <div class="bottomleft">
-    <p>This is the countdown timer to my next year's birthday<br>
+    <p>This is the countdown timer to my birthday next year<br>
     My birthday is on Jul. 9.
     </p>
+    </div>
   </div>
 </div>
 <script>
