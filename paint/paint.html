@@ -22,17 +22,27 @@
 			padding: 0;
 			box-sizing: border-box;
 		}
-		@media only screen and (max-width: 930px) {
-	      .disappear{display: none;} 
-		} 
-		@media only screen and (min-width: 930px){
-			.navBar ul li {float: left;}
-			#words {font-size: 25px;}
+		@media only screen and (max-width: 610px){
+		     .navBar{display: none;}
+    		 .select ul li a{font-size: 10px;padding: 10px 15px;}
 		}
-		@media only screen and (min-width: 600px){
+		@media only screen and (min-width: 990px){
+			.navBar ul li {float: left;}
+			.navBar ul li a{font-size: 15px;padding: 18px 24px;}
+			#words {font-size: 25px;}
+			.select{display: none;}
+			
+		}
+		@media only screen and (max-width: 990px) and (min-width: 610px){
+		    .navBar ul li {float: left;}
+		    .navBar ul{overflow: hidden;}
+		    .navBar ul li a{font-size: 10px;padding: 10px 15px;}
+		    #words {font-size: 20px;}
+		    .select{display: none;}
+		}
+		@media only screen and (min-width: 610px){
 		.alert{ display: none; } 
 		}
-		
 		body{
 			background-color: #ffffcc;
 		}
@@ -47,7 +57,7 @@
 			background-color: white;
 			cursor: url('paintcursor.gif'),pointer;
 		}
-		.navBar ul {
+		.navBar ul, .select ul {
 			list-style-type: none;
 			margin: 0;
 			padding: 0;
@@ -57,26 +67,38 @@
 
 		}
 		
-		.navBar ul li a {
+		.navBar ul li a, .select ul li a  {
 			display:block;
 			color: white;
 			text-align: center;
-			padding: 18px 24px;
-			font-size: 15px;
 			text-decoration: none;
 			font-family: "Courier New", "Arial Black", "Serif";
+			background-color: #333;
 
 		}
 
-		li a:hover {
+		.navBar ul li a:hover,.navBar ul li a:focus, .select ul li a:hover,.select ul li a:focus{
 			background-color: #111;
+		}
+		.dropdown {
+		  display: none;
+		  position:absolute;
+		  z-index: 11;
+		}
+		.menu:hover .dropdown{
+		  display: block;
+		  
+		}
+		.menu:hover .menubtn{
+		  background-color: #111;
 		}
 		.painter{
 			position: relative;
 			width:600px;
 			height:270px; 
 			margin: auto;
-			margin-top: 20px;
+			margin-top: 30px;
+			
 			
 		}
 		.size p, .colors p{
@@ -91,7 +113,7 @@
 			text-align: center;
 			font-family: Courier, "Arial Black", "Serif";			
 		}
-		#large:hover, #blackpic:hover, #redpic:hover, #bluepic:hover, #greenpic:hover{
+		#large:hover, #blackpic:hover, #redpic:hover, #bluepic:hover, #greenpic:hover,#large:focus, #blackpic:focus, #redpic:focus, #bluepic:focus, #greenpic:focus{
 			position: relative;
 			right:1px;
 			bottom:1px;
@@ -122,7 +144,7 @@
 			left:15%;
 			top:50%;
 		}
-		#middle:hover{
+		#middle:hover,#middle:focus{
 			position: absolute;
 			left:14%;
 			top: 49%;
@@ -133,7 +155,7 @@
 			left:30%;
 			top:75%;
 		}
-		#small:hover{
+		#small:hover,#small:focus{
 			position: absolute;
 			left:29%;
 			top: 74%;
@@ -144,7 +166,7 @@
 			left:2%;
 			top:55%;
 		}
-		#eraser:hover{
+		#eraser:hover,#eraser:focus{
 			position: absolute;
 			left: 1.7% ;
 			top: 54.5% ;
@@ -168,7 +190,7 @@
     		border-radius: 12px;
     		font-family: Courier, "Arial Black", "Serif";
 		}
-		button:hover{
+		button:hover,button:focus{
 			position: absolute;
 			left:7px;
 			bottom: 21px;
@@ -182,14 +204,16 @@
 			min-width: 600px;
 		}
 		.alert {
+			
 		    padding: 40px;
 		    background-color: #f44336;
 		    color: white;
 		    font-family: Courier, "Arial Black", "Serif";
 		    position: absolute;
-		    top:30%;
-		    text-align: center;
-		    z-index: 10;
+			top:20%;
+			z-index: 10;
+			min-width: 610px;
+
 		}
 
 	</style>
@@ -198,19 +222,33 @@
 <body>
 <div class=navBar>
 	<ul>
-		<li><a href="../peilunliao.html">HOME</a></li>
-		<div class="disappear">
+		<li><a href="../mainpage/peilunliao.html">HOME</a></li>
 		<li><a href="../quote/quote.html">QUOTES NOTING</a></li>
 		<li><a href="../timer/timer.html">COUNTDOWN TIMER</a></li>
 		<li><a href="../slideshow/slideshow.html">PHOTO SLIDESHOW</a></li>
 		<li><a href="../game/game.html">LITTLE SPACE GAME</a></li>
 		<li><a href="paint.html">PAINTER</a></li>
-		</div>
 	</ul>
 </div>
+<div class="select">
+  <ul>
+    <li class="menu">
+    <a  class="menubtn" href="javascript:void(0)">MENU</a>
+    <div class="dropdown">
+    <a href="../mainpage/peilunliao.html">HOME</a>
+    <a href="../quote/quote.html">QUOTES NOTING</a>
+    <a href="../timer/timer.html">COUNTDOWN TIMER</a>
+    <a href="../slideshow/slideshow.html">PHOTO SLIDESHOW</a>
+    <a href="../game/game.html">LITTLE SPACE GAME</a>
+    <!--<a href="../paint/paint.html">PAINTER</a>-->
+    </li>
+    </div>
+  </ul> 
+</div>
 <div class="alert">
-  <strong>NOTICE!</strong><br>
-	Please turn your device's orientation to fit the canvas. 
+  <strong>NOTICE!</strong> <br>
+  Please turn your device's orientation<br>
+  or enlarge your window width to fit the canvas. 
 </div>
 <div class="painter">
 	<div>
@@ -238,7 +276,7 @@
 	<p>This is the little paint game I created. Please give it a try!<br>
 	You can change the size and color of stroke by tapping the images.<br>
 	Let's start and find out what you can create !!<br>
-	* For Mobile user, softly tap the canvas to make it fit the screen before you start drawing!
+	* For Mobile user, softly tap the canvas to make it fit the screen before you start drawing!  
 	</p>
 	</div>
 
@@ -291,7 +329,7 @@
 		for (var i = 0; i < touches.length; i++) {
     		ongoingTouches.push(copyTouch(touches[i]));
     		context.beginPath();
-    		context.arc(touches[i].pageX - rect.left, touches[i].pageY - rect.top, width/2 , 0, 2 * Math.PI, false);  // a circle at the start
+    		context.arc(touches[i].pageX - rect.left - window.pageXOffset, touches[i].pageY - rect.top -window.pageYOffset, width/2 , 0, 2 * Math.PI, false);  // a circle at the start
     		context.fillStyle = color;
     		context.fill();
 	      }
@@ -304,12 +342,12 @@
 	    var idx = ongoingTouchIndexById(touches[i].identifier);
 	    if (idx >= 0) {
 	        context.beginPath();
-	 	context.arc(touches[i].pageX - rect.left, touches[i].pageY - rect.top, width/2 , 0, 2 * Math.PI, false);
+	 	context.arc(touches[i].pageX - rect.left - window.pageXOffset, touches[i].pageY - rect.top -window.pageYOffset, width/2 , 0, 2 * Math.PI, false);
 		context.fillStyle = color;
     		context.fill();    
 	      context.beginPath();      
-	      context.moveTo(ongoingTouches[idx].pageX - rect.left, ongoingTouches[idx].pageY - rect.top);
-	      context.lineTo(touches[i].pageX - rect.left, touches[i].pageY - rect.top);
+	      context.moveTo(ongoingTouches[idx].pageX - rect.left - window.pageXOffset, ongoingTouches[idx].pageY - rect.top -window.pageYOffset);
+	      context.lineTo(touches[i].pageX - rect.left - window.pageXOffset, touches[i].pageY - rect.top -window.pageYOffset);
 	      context.lineWidth = width;
 	      context.strokeStyle = color;
 	      context.stroke();
