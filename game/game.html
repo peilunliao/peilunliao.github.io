@@ -8,7 +8,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 	<script>
-    var pic = document.getElementsByClassName('all');
+    
     function main(){
       $('.all').hide();
       $('.all').fadeIn(900);
@@ -21,6 +21,7 @@
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
+
 	}
 	/*.all::after {
     content: "";
@@ -30,7 +31,7 @@
 	[class*="col-"] {
 	    float: left;
 	    padding: 15px;
-	    
+	    	    
 	}
 	.col-1 {width: 8.33%;}
 	.col-2 {width: 16.66%;}
@@ -63,18 +64,31 @@
 	@media only screen and (min-width: 500px){
 		.alert{ display: none; } 
 	}
-	@media only screen and (max-width: 930px){
-    .disappear{display: none;}
-		}
-	@media only screen and (min-width: 930px) {
+	@media only screen and (max-width: 500px){
+		body{overflow: hidden;} 
+	}
+	@media only screen and (max-width: 600px){
+    .navBar{display: none;}
+    .select ul li a{font-size: 10px;padding: 10px 15px;}
+	}
+	@media only screen and (min-width: 990px) {
     /* For tablets: */
     .navBar ul li {float: left;}
     .navBar ul{overflow: hidden;}
+    .navBar ul li a{font-size: 15px;padding: 18px 24px;}
     #words h1 {font-size: 60px;}
-    #words h2 {font-size: 30px;}
-    
+    #words p {font-size: 30px;}
+     .select{display: none;}
 	}
-	.navBar ul {
+	@media only screen and (max-width: 990px) and (min-width: 600px){
+    .navBar ul li {float: left;}
+    .navBar ul{overflow: hidden;}
+    .navBar ul li a{font-size: 10px;padding: 10px 15px;}
+    #words h1 {font-size: 40px;}
+    #words p {font-size: 20px;}
+     .select{display: none;}
+	}  
+	.navBar ul, .select ul {
 	  list-style-type: none;
 	  margin: 0;
 	  padding: 0;
@@ -83,18 +97,28 @@
 	  min-width: 500px;
 
 	}
-	.navBar ul li a {
+	.navBar ul li a, .select ul li a  {
 	  display:block;
 	  color: white;
 	  text-align: center;
-	  padding: 18px 24px;
-	  font-size:15px;
 	  text-decoration: none;
 	  font-family: "Courier New", "Arial Black", "Serif";
-
+	  background-color: #333;
 	}
 
-	.navBar ul li a:hover {
+	.navBar ul li a:hover,.navBar ul li a:focus, .select ul li a:hover,.select ul li a:focus {
+	  background-color: #111;
+	}
+	.dropdown {
+	  display: none;
+	  position:absolute;
+	  z-index: 11;
+	}
+	.menu:hover .dropdown{
+	  display: block;
+	  
+	}
+	.menu:hover .menubtn{
 	  background-color: #111;
 	}
 	img{
@@ -104,7 +128,7 @@
     	margin-right: auto;
 	}
 	.btnback{
-		margin-left:5px;
+		
 	}
 	#btn{
 		position: absolute;
@@ -112,7 +136,7 @@
 		left:auto;
 		
 	}
-	button:hover{
+	button:hover, button:focus{
 		background-color: #9999ff;
 	}
 	#startcon{
@@ -126,7 +150,6 @@
 		height: 270px;
 		background-image: url("background.png");
 		margin-top:20px;
-
 
 	}
 	#startbtn{
@@ -173,7 +196,7 @@
 		font-family: 'Amatic SC', cursive;
 		text-align: center;
 	}
-	#words h2{
+	#words p{
 		margin:auto;
 		font-family: 'Calligraffitti', cursive;
 		text-align: center;
@@ -184,30 +207,45 @@
 		background-color: #f44336;
 		color: white;
 		font-family: Courier, "Arial Black", "Serif";
-		position: absolute;
-		top:30%;
 		z-index: 10;
-		text-align: center;
+		position: absolute;
+		top:20%;
 		}
-
+	
 	</style>
 </head>
 <body>
 <div class="navBar">
   <ul>
-    <li><a href="../peilunliao.html">HOME</a></li>
-    <div class="disappear">
+    <li><a href="../mainpage/peilunliao.html">HOME</a></li>
     <li><a href="../quote/quote.html">QUOTES NOTING</a></li>
     <li><a href="../timer/timer.html">COUNTDOWN TIMER</a></li>
     <li><a href="../slideshow/slideshow.html">PHOTO SLIDESHOW</a></li>
     <li><a href="game.html">LITTLE SPACE GAME</a></li>
     <li><a href="../paint/paint.html">PAINTER</a></li>
-    </div>
   </ul>
 </div>
+<div class="select">
+  <ul>
+    <li class="menu">
+    <a  class="menubtn" href="javascript:void(0)">MENU</a>
+    <div class="dropdown">
+    <a href="../mainpage/peilunliao.html">HOME</a>
+    <a href="../quote/quote.html">QUOTES NOTING</a>
+    <a href="../timer/timer.html">COUNTDOWN TIMER</a>
+    <a href="../slideshow/slideshow.html">PHOTO SLIDESHOW</a>
+ <!--<a href="../game/game.html">LITTLE SPACE GAME</a>-->
+    <a href="../paint/paint.html">PAINTER</a>
+    </li>
+    </div>
+  </ul> 
+</div>
 <div class="alert">
+  <!--<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>--> 
   <strong>NOTICE!</strong><br> 
-  please turn your device's orientation to fit the game area. 
+  Please turn your device's orientation<br> 
+  or enlarge your window width to fit the game area.
+
 </div>
 <div class="all">
 
@@ -226,11 +264,11 @@
   </div>
 	<div id="words" class="col-12">
 		<h1>Little Space Game</h1>
-		<h2>This is the little game I designed.Please hit the Start button to begin the game.<br>
+		<p>This is the little game I designed.Please hit the Start button to begin the game.<br>
 			Your mission is to avoid the red rocks randomly flying in the space.<br>
 			Let's start the game and see how far you can go!! Hope you will enjoy it!!<br>
 			Use your keyboard arrow (computer) or finger(mobile and tablet) to move the smiley face.
-		</h2>
+		</p>
 	</div>
 </div>
 <script>
@@ -246,8 +284,9 @@ var btn ;
 		//var pic = document.getElementById("pic")
 		//document.getElementById("startcon").removeChild(startbtn);
 		//document.getElementById("back").removeChild(pic);
-		document.getElementById("startcon").style.display = "none";
-		startGame();
+		  document.getElementById("startcon").style.display = "none";
+		  startGame();
+		
 	}
 
 	function startGame() {		
