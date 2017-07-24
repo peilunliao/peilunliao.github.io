@@ -8,26 +8,35 @@ body {
   overflow: scroll;
 
 }
-@media only screen and (max-width: 990px){
-    .disappear{display: none;}
-}
-@media only screen and (min-width: 600px){
-    div p{font-size: 20px;}
-    div h3{font-size: 30px;}
+
+@media only screen and (max-width: 600px){
+    .navBar{display: none;}
+    .select ul li a{font-size: 10px;padding: 10px 15px;}
+
 }
 @media only screen and (min-width: 990px) {
     /* For tablets: */
     .navBar ul li {float: left;}
     .navBar ul{overflow: hidden;}
+    .navBar ul li a{font-size: 15px;padding: 18px 24px;}
     div p{font-size: 25px;}
     div h3{font-size: 40px;}
     #myUL li{font-size: 25px;}
     input{font-size: 16px;}
-    
+    .select{display: none;}
+ }   
+@media only screen and (max-width: 990px) and (min-width: 600px){
+    .navBar ul li {float: left;}
+    .navBar ul{overflow: hidden;}
+    .navBar ul li a{font-size: 10px;padding: 10px 15px;}
+     div p{font-size: 20px;}
+    div h3{font-size: 30px;}
+    .select{display: none;}
+}    
 
     
-}
-.navBar ul {
+
+.navBar ul, .select ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -35,18 +44,28 @@ body {
 
 }
 
-.navBar li a {
+.navBar ul li a, .select ul li a {
   display:block;
   color: white;
   text-align: center;
-  padding: 18px 24px;
   text-decoration: none;
-  font-size: 15px;
   font-family: "Courier New", "Arial Black", "Serif";
-
+  background-color: #333;
 }
 
-.navBar li a:hover {
+.navBar ul li a:hover,.navBar ul li a:focus, .select ul li a:hover,.select ul li a:focus {
+  background-color: #111;
+}
+.dropdown {
+  display: none;
+  position:absolute;
+  z-index: 10;
+}
+.menu:hover .dropdown{
+  display: block;
+  
+}
+.menu:hover .menubtn{
   background-color: #111;
 }
 
