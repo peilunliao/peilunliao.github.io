@@ -16,7 +16,7 @@
     $(document).ready(main);
    $(document).ready(function(){
 			$(".menubtn").click(function(){
-				$(".dropdown").toggle();
+				$(".dropdown").toggle(function(){});
 			});
 		});
   	</script>
@@ -96,9 +96,7 @@
 		  display: block;
 		  
 		}
-		.menu:hover .menubtn{
-		  background-color: #111;
-		}
+		
 		.painter{
 			position: relative;
 			width:600px;
