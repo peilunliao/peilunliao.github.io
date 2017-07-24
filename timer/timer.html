@@ -74,9 +74,7 @@ body, html {
   display: block;
   
 }
-.menu:hover .menubtn{
-  background-color: #111;
-}
+
 
 .bgimg {
     overflow: auto;
@@ -212,7 +210,7 @@ var pic = document.getElementsByClassName('bgimg');
     $(document).ready(main);
     $(document).ready(function(){
 			$(".menubtn").click(function(){
-				$(".dropdown").toggle();
+				$(".dropdown").toggle(function(){});
 			});
 		});
 </script>
