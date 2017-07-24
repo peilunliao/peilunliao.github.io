@@ -24,6 +24,7 @@
     .navBar ul li {float: left;}
     .navBar ul{overflow: hidden;}
     .navBar ul li a{font-size: 10px;padding: 10px 15px;}
+    .container{font-size: 20px;}
     .pic h1{font-size:55px;}
     .pic{height:500px;}
     .select{display: none;}
