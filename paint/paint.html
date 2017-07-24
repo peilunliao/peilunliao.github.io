@@ -284,8 +284,8 @@
   	canvas.addEventListener("touchmove", handleMove, false);
 	function handleStart(evt){
 		evt.preventDefault();
-		$("html, body").animate({ scrollTop: 0 }, 300);
-		$("html, body").animate({ scrollLeft: 0 }, 300);
+		//$("html, body").animate({ scrollTop: 0 }, 300);
+		//$("html, body").animate({ scrollLeft: 0 }, 300);
 		var touches = evt.changedTouches;
 		var rect = canvas.getBoundingClientRect();
 		for (var i = 0; i < touches.length; i++) {
