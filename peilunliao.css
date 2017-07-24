@@ -4,24 +4,29 @@
 
 @media only screen and (min-width: 990px) {
     /* For tablets: */
-    .mobilebar ul li {float: left;}
-    .mobilebar ul li a{font-size: 15px;padding: 18px 24px;}
-    .mobilebar ul{overflow: hidden;}
+    .navBar ul li {float: left;}
+    .navBar ul li a{font-size: 15px;padding: 18px 24px;}
+    .navBar ul{overflow: hidden;}
     .container{font-size: 30px;}
     .pic h1{font-size:70px;}
-    
+    .pic{height:700px;}
+    .select{display: none;}
     
 }
 @media only screen and (max-width: 600px){
-    .pic h1{font-size:40px;}
-    .mobilebar ul li a{font-size: 10px;padding: 5px 15px;}
-
+    .navBar{display: none;}
+    .pic h1{font-size:35px;}
+    .pic{height:350px;}
+    .select ul li a{font-size: 10px;padding: 10px 15px;}
+   
 }
 @media only screen and (max-width: 990px) and (min-width: 600px){
-    .mobilebar ul li {float: left;}
-    .mobilebar ul{overflow: hidden;}
-    .mobilebar ul li a{font-size: 10px;padding: 10px 15px;}
+    .navBar ul li {float: left;}
+    .navBar ul{overflow: hidden;}
+    .navBar ul li a{font-size: 10px;padding: 10px 15px;}
     .pic h1{font-size:55px;}
+    .pic{height:500px;}
+    .select{display: none;}
 }
 body {
 	margin: 0;
@@ -29,11 +34,10 @@ body {
 	min-width: 250px;
 }
 
-
 .pic {
 	background: url(IMG_3893.jpg) no-repeat center center;
     background-size: cover;
-    height:700px;
+    
   	
 }
 .pic h1 {
@@ -55,7 +59,7 @@ body {
 .footer{
 	background-color: #333;
   	color: #fff;
-  	padding: 30px 0;
+  	padding: 10px 0;
   
 }
 .footer p {
@@ -65,22 +69,35 @@ body {
   text-align: center;
 }
 
-.mobilebar ul{
+.navBar ul, .select ul{
 	list-style-type: none;
 	margin: 0;
 	padding:0;
 	background-color: #333;
 }
 
-.mobilebar ul li a{
+.navBar ul li a, .select ul li a{
 	display:block;
 	color: white;
 	text-align: center;
-	
 	text-decoration: none;
 	font-family: "Courier New", "Arial Black", "Serif";
+  background-color: #333;
 	
 }
-.mobilebar ul li a:hover,.mobilebar ul li a:focus {
+.navBar ul li a:hover,.navBar ul li a:focus, .select ul li a:hover,.select ul li a:focus {
 	background-color: #111;
+}
+
+.dropdown {
+  display: none;
+  position:absolute;
+  z-index: 10;
+}
+.menu:hover .dropdown{
+  display: block;
+  
+}
+.menu:hover .menubtn{
+  background-color: #111;
 }
