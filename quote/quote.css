@@ -65,9 +65,7 @@ body {
   display: block;
   
 }
-.menu:hover .menubtn{
-  background-color: #111;
-}
+
 
 div p{
   position: relative;
