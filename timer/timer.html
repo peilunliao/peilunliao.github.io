@@ -18,21 +18,32 @@ body, html {
   margin: 0;
   box-sizing: border-box;
 }
-@media only screen and (max-width: 990px){
-    .disappear{display: none;}
+@media only screen and (max-width: 600px){
     .bgimg{background-image: url('IMG_1712.jpg');}
     .bottomleft{font-size: 18px}
     .container{width:100%;}
+    .navBar{display: none;}
+    .select ul li a{font-size: 10px;padding: 10px 15px;}
 }
 @media only screen and (min-width: 990px) {
     /* For tablets: */
     .navBar ul li {float: left;}
     .navBar ul{overflow: hidden;}
+    .navBar ul li a{font-size: 15px;padding: 18px 24px;}
     .bgimg{background-image: url('IMG_1845.jpg');}
     .container{width: 41.66%;}
+    .select{display: none;}
     
 }
-.navBar ul {
+@media only screen and (max-width: 990px) and (min-width: 600px){
+    .navBar ul li {float: left;}
+    .navBar ul{overflow: hidden;}
+    .navBar ul li a{font-size: 10px;padding: 10px 15px;}
+    .bgimg{background-image: url('IMG_1712.jpg');}
+    .bottomleft{font-size: 18px}
+    .select{display: none;}
+} 
+.navBar ul, .select ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -41,20 +52,32 @@ body, html {
 
 }
 
-.navBar ul li a {
+.navBar ul li a, .select ul li a {
   display:block;
   color: white;
   text-align: center;
-  padding: 18px 24px;
-  font-size: 15px;
   text-decoration: none;
   font-family: "Courier New", "Arial Black", "Serif";
+  background-color: #333;
 
 }
 
-.navBar ul li a:hover {
+.navBar ul li a:hover,.navBar ul li a:focus, .select ul li a:hover,.select ul li a:focus {
   background-color: #111;
 }
+.dropdown {
+  display: none;
+  position:absolute;
+  z-index: 10;
+}
+.menu:hover .dropdown{
+  display: block;
+  
+}
+.menu:hover .menubtn{
+  background-color: #111;
+}
+
 .bgimg {
     overflow: auto;
     height: 100%;
@@ -112,15 +135,28 @@ body, html {
 <body>
 <div class=navBar>
   <ul>
-    <li><a href="../peilunliao.html">HOME</a></li>
-    <div class="disappear">
+    <li><a href="../mainpage/peilunliao.html">HOME</a></li>
     <li><a href="../quote/quote.html">QUOTES NOTING</a></li>
     <li><a href="timer.html">COUNTDOWN TIMER</a></li>
     <li><a href="../slideshow/slideshow.html">PHOTO SLIDESHOW</a></li>
     <li><a href="../game/game.html">LITTLE SPACE GAME</a></li>
     <li><a href="../paint/paint.html">PAINTER</a></li>
-    </div>
   </ul>
+</div>
+<div class="select">
+  <ul>
+    <li class="menu">
+    <a  class="menubtn" href="javascript:void(0)">MENU</a>
+    <div class="dropdown">
+    <a href="../mainpage/peilunliao.html">HOME</a>
+    <a href="../quote/quote.html">QUOTES NOTING</a>
+    <!--<a href="../timer/timer.html">COUNTDOWN TIMER</a>-->
+    <a href="../slideshow/slideshow.html">PHOTO SLIDESHOW</a>
+    <a href="../game/game.html">LITTLE SPACE GAME</a>
+    <a href="../paint/paint.html">PAINTER</a>
+    </li>
+    </div>
+  </ul> 
 </div>
 <div class="bgimg">
  <div class="container">
