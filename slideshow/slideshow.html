@@ -16,7 +16,7 @@
     $(document).ready(main);
     $(document).ready(function(){
 			$(".menubtn").click(function(){
-				$(".dropdown").toggle();
+				$(".dropdown").toggle(function(){});
 			});
 		});
   </script>
@@ -78,9 +78,7 @@ body {font-family: Verdana,sans-serif;
   display: block;
   
 }
-.menu:hover .menubtn{
-  background-color: #111;
-}
+
 div p {
   text-align: center;
   font-family: 'Calligraffitti', cursive;
