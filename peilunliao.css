@@ -1,7 +1,9 @@
 *{
 	box-sizing: border-box;
 }
-
+@media only screen and (min-height: 800px){
+  .footer{position:absolute;bottom:0;width: 100%;}
+}
 @media only screen and (min-width: 990px) {
     /* For tablets: */
     .navBar ul li {float: left;}
